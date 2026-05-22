@@ -1,0 +1,30 @@
+# Data — never commit raw or synthetic patient data
+data/raw/*
+data/processed/*
+data/splits/*
+!data/**/.gitkeep
+
+# Model weights — too large for GitHub
+outputs/checkpoints/*
+*.bin
+*.pt
+*.safetensors
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+*.egg-info/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Environment
+.env
+*.env
+
+# Wandb
+wandb/
+
+# macOS
+.DS_Store
