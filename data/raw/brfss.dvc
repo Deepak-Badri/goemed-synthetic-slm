@@ -1,0 +1,6 @@
+outs:
+- md5: 8ab066ced0ea78af1162ebb91f67d25e.dir
+  size: 1095487464
+  nfiles: 2
+  hash: md5
+  path: brfss

@@ -1,7 +1,8 @@
-# Data — never commit raw or synthetic patient data
+# Data — allow DVC files but ignore the massive datasets
 data/raw/*
-data/processed/*
-data/splits/*
+!data/raw/*.dvc
+data/processed/
+data/splits/
 !data/**/.gitkeep
 
 # Model weights — too large for GitHub
