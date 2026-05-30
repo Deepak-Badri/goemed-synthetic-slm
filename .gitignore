@@ -1,9 +1,12 @@
-# Data — allow DVC files but ignore the massive datasets
-data/raw/*
-!data/raw/*.dvc
+# Data — ignore raw data files but allow DVC pointer files
+data/raw/**/*.xpt
+data/raw/**/*.XPT
+data/raw/**/*.zip
+data/raw/**/*.ZIP
 data/processed/
 data/splits/
 !data/**/.gitkeep
+!data/**/*.dvc
 
 # Model weights — too large for GitHub
 outputs/checkpoints/*
