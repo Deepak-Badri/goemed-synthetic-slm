@@ -1,0 +1,1297 @@
+age:
+  description: Age in years (80 = 80+ per NHANES top-coding)
+  units: years
+  distribution: normal
+  bounds:
+    min: 18
+    max: 80
+  strata:
+    mexican_american:
+      M:
+        mu: 44.1265
+        sigma: 17.633
+        n: 854
+        ks_test:
+          ks_statistic: 0.0723
+          p_value: 0.0002
+          pass: false
+      F:
+        mu: 44.6606
+        sigma: 16.8682
+        n: 875
+        ks_test:
+          ks_statistic: 0.057
+          p_value: 0.0065
+          pass: false
+    other_hispanic:
+      M:
+        mu: 47.9465
+        sigma: 18.1536
+        n: 823
+        ks_test:
+          ks_statistic: 0.0835
+          p_value: 0.0
+          pass: false
+      F:
+        mu: 48.305
+        sigma: 18.0945
+        n: 987
+        ks_test:
+          ks_statistic: 0.0773
+          p_value: 0.0
+          pass: false
+    nh_white:
+      M:
+        mu: 54.5269
+        sigma: 19.0359
+        n: 3775
+        ks_test:
+          ks_statistic: 0.0934
+          p_value: 0.0
+          pass: false
+      F:
+        mu: 54.3566
+        sigma: 18.8909
+        n: 4299
+        ks_test:
+          ks_statistic: 0.0873
+          p_value: 0.0
+          pass: false
+    nh_black:
+      M:
+        mu: 50.003
+        sigma: 17.6898
+        n: 1664
+        ks_test:
+          ks_statistic: 0.1001
+          p_value: 0.0
+          pass: false
+      F:
+        mu: 48.564
+        sigma: 17.6306
+        n: 1936
+        ks_test:
+          ks_statistic: 0.0766
+          p_value: 0.0
+          pass: false
+    nh_asian:
+      M:
+        mu: 46.8646
+        sigma: 17.2762
+        n: 746
+        ks_test:
+          ks_statistic: 0.0573
+          p_value: 0.0144
+          pass: false
+      F:
+        mu: 47.9804
+        sigma: 16.9598
+        n: 869
+        ks_test:
+          ks_statistic: 0.0598
+          p_value: 0.0038
+          pass: false
+    other_multiracial:
+      M:
+        mu: 48.2924
+        sigma: 18.8319
+        n: 513
+        ks_test:
+          ks_statistic: 0.0899
+          p_value: 0.0005
+          pass: false
+      F:
+        mu: 47.0416
+        sigma: 18.4851
+        n: 505
+        ks_test:
+          ks_statistic: 0.0924
+          p_value: 0.0003
+          pass: false
+  overall:
+    mu: 50.758
+    sigma: 18.6252
+    ks_test:
+      ks_statistic: 0.0782
+      p_value: 0.0
+      pass: false
+    n: 17846
+bmi:
+  description: Body Mass Index
+  units: "kg/m\xB2"
+  distribution: lognorm
+  bounds:
+    min: 15
+    max: 70
+  strata:
+    mexican_american:
+      M:
+        mu_log: 3.3848
+        sigma_log: 0.1919
+        loc: 0.0
+        scale: 29.5123
+        n: 726
+        ks_test:
+          ks_statistic: 0.031
+          p_value: 0.4778
+          pass: true
+      F:
+        mu_log: 3.4123
+        sigma_log: 0.2205
+        loc: 0.0
+        scale: 30.3336
+        n: 750
+        ks_test:
+          ks_statistic: 0.0243
+          p_value: 0.7575
+          pass: true
+    other_hispanic:
+      M:
+        mu_log: 3.3665
+        sigma_log: 0.1996
+        loc: 0.0
+        scale: 28.9755
+        n: 704
+        ks_test:
+          ks_statistic: 0.0419
+          p_value: 0.1642
+          pass: true
+      F:
+        mu_log: 3.3676
+        sigma_log: 0.2189
+        loc: 0.0
+        scale: 29.0096
+        n: 834
+        ks_test:
+          ks_statistic: 0.0377
+          p_value: 0.1826
+          pass: true
+    nh_white:
+      M:
+        mu_log: 3.3583
+        sigma_log: 0.209
+        loc: 0.0
+        scale: 28.7411
+        n: 3139
+        ks_test:
+          ks_statistic: 0.0357
+          p_value: 0.0006
+          pass: false
+      F:
+        mu_log: 3.3688
+        sigma_log: 0.2512
+        loc: 0.0
+        scale: 29.0438
+        n: 3519
+        ks_test:
+          ks_statistic: 0.0346
+          p_value: 0.0004
+          pass: false
+    nh_black:
+      M:
+        mu_log: 3.3511
+        sigma_log: 0.2344
+        loc: 0.0
+        scale: 28.5346
+        n: 1434
+        ks_test:
+          ks_statistic: 0.0217
+          p_value: 0.5002
+          pass: true
+      F:
+        mu_log: 3.4627
+        sigma_log: 0.2647
+        loc: 0.0
+        scale: 31.9025
+        n: 1645
+        ks_test:
+          ks_statistic: 0.0153
+          p_value: 0.829
+          pass: true
+    nh_asian:
+      M:
+        mu_log: 3.2535
+        sigma_log: 0.1608
+        loc: 0.0
+        scale: 25.881
+        n: 650
+        ks_test:
+          ks_statistic: 0.0456
+          p_value: 0.13
+          pass: true
+      F:
+        mu_log: 3.2089
+        sigma_log: 0.1817
+        loc: 0.0
+        scale: 24.751
+        n: 767
+        ks_test:
+          ks_statistic: 0.036
+          p_value: 0.2677
+          pass: true
+    other_multiracial:
+      M:
+        mu_log: 3.3515
+        sigma_log: 0.2298
+        loc: 0.0
+        scale: 28.5443
+        n: 432
+        ks_test:
+          ks_statistic: 0.0535
+          p_value: 0.1632
+          pass: true
+      F:
+        mu_log: 3.3915
+        sigma_log: 0.2696
+        loc: 0.0
+        scale: 29.7106
+        n: 404
+        ks_test:
+          ks_statistic: 0.0359
+          p_value: 0.6614
+          pass: true
+  overall:
+    mu_log: 3.3649
+    sigma_log: 0.2343
+    loc: 0.0
+    scale: 28.9314
+    ks_test:
+      ks_statistic: 0.0326
+      p_value: 0.0
+      pass: false
+    n: 15004
+sbp:
+  description: Systolic blood pressure (average of readings 2&3)
+  units: mmHg
+  distribution: normal
+  bounds:
+    min: 80
+    max: 220
+  strata:
+    mexican_american:
+      M:
+        mu: 124.5068
+        sigma: 15.1004
+        n: 661
+        ks_test:
+          ks_statistic: 0.0839
+          p_value: 0.0002
+          pass: false
+      F:
+        mu: 116.5888
+        sigma: 18.0852
+        n: 670
+        ks_test:
+          ks_statistic: 0.0954
+          p_value: 0.0
+          pass: false
+    other_hispanic:
+      M:
+        mu: 124.5251
+        sigma: 16.9694
+        n: 658
+        ks_test:
+          ks_statistic: 0.0974
+          p_value: 0.0
+          pass: false
+      F:
+        mu: 119.6658
+        sigma: 20.0209
+        n: 772
+        ks_test:
+          ks_statistic: 0.1052
+          p_value: 0.0
+          pass: false
+    nh_white:
+      M:
+        mu: 124.7165
+        sigma: 16.1156
+        n: 3028
+        ks_test:
+          ks_statistic: 0.0728
+          p_value: 0.0
+          pass: false
+      F:
+        mu: 120.9426
+        sigma: 18.8953
+        n: 3380
+        ks_test:
+          ks_statistic: 0.0826
+          p_value: 0.0
+          pass: false
+    nh_black:
+      M:
+        mu: 130.0154
+        sigma: 19.4739
+        n: 1363
+        ks_test:
+          ks_statistic: 0.0773
+          p_value: 0.0
+          pass: false
+      F:
+        mu: 125.4815
+        sigma: 21.9211
+        n: 1516
+        ks_test:
+          ks_statistic: 0.0824
+          p_value: 0.0
+          pass: false
+    nh_asian:
+      M:
+        mu: 124.4479
+        sigma: 15.6561
+        n: 605
+        ks_test:
+          ks_statistic: 0.0897
+          p_value: 0.0001
+          pass: false
+      F:
+        mu: 119.9383
+        sigma: 20.1716
+        n: 665
+        ks_test:
+          ks_statistic: 0.0662
+          p_value: 0.0056
+          pass: false
+    other_multiracial:
+      M:
+        mu: 126.0203
+        sigma: 17.6722
+        n: 418
+        ks_test:
+          ks_statistic: 0.0924
+          p_value: 0.0015
+          pass: false
+      F:
+        mu: 118.561
+        sigma: 18.6032
+        n: 377
+        ks_test:
+          ks_statistic: 0.0932
+          p_value: 0.0027
+          pass: false
+  overall:
+    mu: 123.3632
+    sigma: 18.7147
+    ks_test:
+      ks_statistic: 0.0697
+      p_value: 0.0
+      pass: false
+    n: 14113
+dbp:
+  description: Diastolic blood pressure (average of readings 2&3)
+  units: mmHg
+  distribution: normal
+  bounds:
+    min: 40
+    max: 130
+  strata:
+    mexican_american:
+      M:
+        mu: 74.1747
+        sigma: 11.1018
+        n: 661
+        ks_test:
+          ks_statistic: 0.0317
+          p_value: 0.5089
+          pass: true
+      F:
+        mu: 70.7978
+        sigma: 10.2844
+        n: 670
+        ks_test:
+          ks_statistic: 0.0546
+          p_value: 0.0356
+          pass: false
+    other_hispanic:
+      M:
+        mu: 74.8174
+        sigma: 11.1474
+        n: 657
+        ks_test:
+          ks_statistic: 0.0555
+          p_value: 0.0336
+          pass: false
+      F:
+        mu: 72.2558
+        sigma: 10.8883
+        n: 772
+        ks_test:
+          ks_statistic: 0.0531
+          p_value: 0.0249
+          pass: false
+    nh_white:
+      M:
+        mu: 73.8977
+        sigma: 10.9615
+        n: 3031
+        ks_test:
+          ks_statistic: 0.0334
+          p_value: 0.0023
+          pass: false
+      F:
+        mu: 72.8777
+        sigma: 10.6176
+        n: 3381
+        ks_test:
+          ks_statistic: 0.0393
+          p_value: 0.0001
+          pass: false
+    nh_black:
+      M:
+        mu: 77.1582
+        sigma: 12.9775
+        n: 1365
+        ks_test:
+          ks_statistic: 0.0401
+          p_value: 0.024
+          pass: false
+      F:
+        mu: 76.414
+        sigma: 12.4031
+        n: 1517
+        ks_test:
+          ks_statistic: 0.049
+          p_value: 0.0013
+          pass: false
+    nh_asian:
+      M:
+        mu: 75.3124
+        sigma: 10.4836
+        n: 605
+        ks_test:
+          ks_statistic: 0.0498
+          p_value: 0.0963
+          pass: true
+      F:
+        mu: 72.7737
+        sigma: 10.7881
+        n: 665
+        ks_test:
+          ks_statistic: 0.0439
+          p_value: 0.1503
+          pass: true
+    other_multiracial:
+      M:
+        mu: 75.4029
+        sigma: 11.2347
+        n: 417
+        ks_test:
+          ks_statistic: 0.0543
+          p_value: 0.1652
+          pass: true
+      F:
+        mu: 73.9458
+        sigma: 11.3122
+        n: 378
+        ks_test:
+          ks_statistic: 0.0694
+          p_value: 0.0499
+          pass: false
+  overall:
+    mu: 74.1113
+    sigma: 11.3477
+    ks_test:
+      ks_statistic: 0.0395
+      p_value: 0.0
+      pass: false
+    n: 14119
+total_cholesterol:
+  description: Total cholesterol
+  units: mg/dL
+  distribution: normal
+  bounds:
+    min: 100
+    max: 400
+  strata:
+    mexican_american:
+      M:
+        mu: 186.1393
+        sigma: 40.6334
+        n: 689
+        ks_test:
+          ks_statistic: 0.0451
+          p_value: 0.1172
+          pass: true
+      F:
+        mu: 184.9162
+        sigma: 37.5498
+        n: 728
+        ks_test:
+          ks_statistic: 0.073
+          p_value: 0.0008
+          pass: false
+    other_hispanic:
+      M:
+        mu: 183.603
+        sigma: 41.0292
+        n: 660
+        ks_test:
+          ks_statistic: 0.0465
+          p_value: 0.1122
+          pass: true
+      F:
+        mu: 188.463
+        sigma: 40.6558
+        n: 797
+        ks_test:
+          ks_statistic: 0.0526
+          p_value: 0.0233
+          pass: false
+    nh_white:
+      M:
+        mu: 179.8667
+        sigma: 40.6671
+        n: 2940
+        ks_test:
+          ks_statistic: 0.0468
+          p_value: 0.0
+          pass: false
+      F:
+        mu: 193.9955
+        sigma: 40.6528
+        n: 3311
+        ks_test:
+          ks_statistic: 0.0467
+          p_value: 0.0
+          pass: false
+    nh_black:
+      M:
+        mu: 178.3094
+        sigma: 40.3506
+        n: 1267
+        ks_test:
+          ks_statistic: 0.0425
+          p_value: 0.0202
+          pass: false
+      F:
+        mu: 181.4003
+        sigma: 38.6978
+        n: 1459
+        ks_test:
+          ks_statistic: 0.0552
+          p_value: 0.0003
+          pass: false
+    nh_asian:
+      M:
+        mu: 189.827
+        sigma: 41.512
+        n: 601
+        ks_test:
+          ks_statistic: 0.0359
+          p_value: 0.4114
+          pass: true
+      F:
+        mu: 193.7067
+        sigma: 39.6446
+        n: 699
+        ks_test:
+          ks_statistic: 0.0535
+          p_value: 0.0352
+          pass: false
+    other_multiracial:
+      M:
+        mu: 180.6977
+        sigma: 40.6763
+        n: 397
+        ks_test:
+          ks_statistic: 0.0562
+          p_value: 0.1564
+          pass: true
+      F:
+        mu: 194.2975
+        sigma: 41.6799
+        n: 363
+        ks_test:
+          ks_statistic: 0.0557
+          p_value: 0.2024
+          pass: true
+  overall:
+    mu: 186.0193
+    sigma: 40.7677
+    ks_test:
+      ks_statistic: 0.0418
+      p_value: 0.0
+      pass: false
+    n: 13911
+hdl_cholesterol:
+  description: HDL cholesterol
+  units: mg/dL
+  distribution: lognorm
+  bounds:
+    min: 20
+    max: 120
+  strata:
+    mexican_american:
+      M:
+        mu_log: 3.8067
+        sigma_log: 0.2353
+        loc: 0.0
+        scale: 45.0011
+        n: 692
+        ks_test:
+          ks_statistic: 0.0467
+          p_value: 0.0942
+          pass: true
+      F:
+        mu_log: 3.9483
+        sigma_log: 0.2434
+        loc: 0.0
+        scale: 51.8482
+        n: 733
+        ks_test:
+          ks_statistic: 0.04
+          p_value: 0.1873
+          pass: true
+    other_hispanic:
+      M:
+        mu_log: 3.8109
+        sigma_log: 0.2334
+        loc: 0.0
+        scale: 45.1899
+        n: 666
+        ks_test:
+          ks_statistic: 0.0415
+          p_value: 0.1951
+          pass: true
+      F:
+        mu_log: 3.9945
+        sigma_log: 0.236
+        loc: 0.0
+        scale: 54.2985
+        n: 799
+        ks_test:
+          ks_statistic: 0.035
+          p_value: 0.276
+          pass: true
+    nh_white:
+      M:
+        mu_log: 3.8553
+        sigma_log: 0.2469
+        loc: 0.0
+        scale: 47.2421
+        n: 2972
+        ks_test:
+          ks_statistic: 0.0455
+          p_value: 0.0
+          pass: false
+      F:
+        mu_log: 4.0453
+        sigma_log: 0.2582
+        loc: 0.0
+        scale: 57.1291
+        n: 3312
+        ks_test:
+          ks_statistic: 0.0287
+          p_value: 0.0084
+          pass: false
+    nh_black:
+      M:
+        mu_log: 3.9227
+        sigma_log: 0.2602
+        loc: 0.0
+        scale: 50.5385
+        n: 1277
+        ks_test:
+          ks_statistic: 0.0469
+          p_value: 0.007
+          pass: false
+      F:
+        mu_log: 4.0273
+        sigma_log: 0.2539
+        loc: 0.0
+        scale: 56.1078
+        n: 1459
+        ks_test:
+          ks_statistic: 0.0353
+          p_value: 0.0514
+          pass: true
+    nh_asian:
+      M:
+        mu_log: 3.8421
+        sigma_log: 0.2303
+        loc: 0.0
+        scale: 46.6233
+        n: 600
+        ks_test:
+          ks_statistic: 0.0531
+          p_value: 0.0658
+          pass: true
+      F:
+        mu_log: 4.0574
+        sigma_log: 0.2546
+        loc: 0.0
+        scale: 57.8228
+        n: 697
+        ks_test:
+          ks_statistic: 0.0314
+          p_value: 0.4862
+          pass: true
+    other_multiracial:
+      M:
+        mu_log: 3.8453
+        sigma_log: 0.2595
+        loc: 0.0
+        scale: 46.7745
+        n: 401
+        ks_test:
+          ks_statistic: 0.0658
+          p_value: 0.0596
+          pass: true
+      F:
+        mu_log: 4.0108
+        sigma_log: 0.2707
+        loc: 0.0
+        scale: 55.1936
+        n: 362
+        ks_test:
+          ks_statistic: 0.0363
+          p_value: 0.7117
+          pass: true
+  overall:
+    mu_log: 3.946
+    sigma_log: 0.2664
+    loc: 0.0
+    scale: 51.7304
+    ks_test:
+      ks_statistic: 0.0333
+      p_value: 0.0
+      pass: false
+    n: 13970
+hba1c:
+  description: "Glycated hemoglobin \u2014 key diabetes marker"
+  units: '%'
+  distribution: lognorm
+  bounds:
+    min: 4.0
+    max: 15.0
+  strata:
+    mexican_american:
+      M:
+        mu_log: 1.7632
+        sigma_log: 0.1843
+        loc: 0.0
+        scale: 5.831
+        n: 711
+        ks_test:
+          ks_statistic: 0.2186
+          p_value: 0.0
+          pass: false
+      F:
+        mu_log: 1.7573
+        sigma_log: 0.1733
+        loc: 0.0
+        scale: 5.797
+        n: 749
+        ks_test:
+          ks_statistic: 0.1992
+          p_value: 0.0
+          pass: false
+    other_hispanic:
+      M:
+        mu_log: 1.7513
+        sigma_log: 0.1644
+        loc: 0.0
+        scale: 5.7621
+        n: 683
+        ks_test:
+          ks_statistic: 0.1986
+          p_value: 0.0
+          pass: false
+      F:
+        mu_log: 1.7538
+        sigma_log: 0.17
+        loc: 0.0
+        scale: 5.7763
+        n: 827
+        ks_test:
+          ks_statistic: 0.2014
+          p_value: 0.0
+          pass: false
+    nh_white:
+      M:
+        mu_log: 1.7361
+        sigma_log: 0.1479
+        loc: 0.0
+        scale: 5.6752
+        n: 3046
+        ks_test:
+          ks_statistic: 0.1868
+          p_value: 0.0
+          pass: false
+      F:
+        mu_log: 1.7192
+        sigma_log: 0.1272
+        loc: 0.0
+        scale: 5.5801
+        n: 3430
+        ks_test:
+          ks_statistic: 0.1678
+          p_value: 0.0
+          pass: false
+    nh_black:
+      M:
+        mu_log: 1.7709
+        sigma_log: 0.1655
+        loc: 0.0
+        scale: 5.876
+        n: 1332
+        ks_test:
+          ks_statistic: 0.1593
+          p_value: 0.0
+          pass: false
+      F:
+        mu_log: 1.7689
+        sigma_log: 0.1571
+        loc: 0.0
+        scale: 5.8647
+        n: 1531
+        ks_test:
+          ks_statistic: 0.1823
+          p_value: 0.0
+          pass: false
+    nh_asian:
+      M:
+        mu_log: 1.7585
+        sigma_log: 0.1447
+        loc: 0.0
+        scale: 5.8039
+        n: 618
+        ks_test:
+          ks_statistic: 0.1847
+          p_value: 0.0
+          pass: false
+      F:
+        mu_log: 1.7396
+        sigma_log: 0.1398
+        loc: 0.0
+        scale: 5.6949
+        n: 721
+        ks_test:
+          ks_statistic: 0.1588
+          p_value: 0.0
+          pass: false
+    other_multiracial:
+      M:
+        mu_log: 1.7697
+        sigma_log: 0.1803
+        loc: 0.0
+        scale: 5.869
+        n: 413
+        ks_test:
+          ks_statistic: 0.2114
+          p_value: 0.0
+          pass: false
+      F:
+        mu_log: 1.7332
+        sigma_log: 0.1401
+        loc: 0.0
+        scale: 5.6589
+        n: 388
+        ks_test:
+          ks_statistic: 0.188
+          p_value: 0.0
+          pass: false
+  overall:
+    mu_log: 1.745
+    sigma_log: 0.1531
+    loc: 0.0
+    scale: 5.7257
+    ks_test:
+      ks_statistic: 0.1822
+      p_value: 0.0
+      pass: false
+    n: 14449
+fasting_glucose:
+  description: Fasting plasma glucose
+  units: mg/dL
+  distribution: gamma
+  bounds:
+    min: 60
+    max: 500
+  strata:
+    mexican_american:
+      M:
+        alpha: 11.8482
+        loc: 0.0
+        scale: 10.159
+        n: 394
+        ks_test:
+          ks_statistic: 0.239
+          p_value: 0.0
+          pass: false
+      F:
+        alpha: 12.422
+        loc: 0.0
+        scale: 9.1693
+        n: 396
+        ks_test:
+          ks_statistic: 0.2241
+          p_value: 0.0
+          pass: false
+    other_hispanic:
+      M:
+        alpha: 13.5486
+        loc: 0.0
+        scale: 8.5318
+        n: 347
+        ks_test:
+          ks_statistic: 0.2311
+          p_value: 0.0
+          pass: false
+      F:
+        alpha: 14.4411
+        loc: 0.0
+        scale: 7.6501
+        n: 429
+        ks_test:
+          ks_statistic: 0.1985
+          p_value: 0.0
+          pass: false
+    nh_white:
+      M:
+        alpha: 16.3488
+        loc: 0.0
+        scale: 6.9726
+        n: 1591
+        ks_test:
+          ks_statistic: 0.2071
+          p_value: 0.0
+          pass: false
+      F:
+        alpha: 23.3752
+        loc: 0.0
+        scale: 4.5236
+        n: 1779
+        ks_test:
+          ks_statistic: 0.1885
+          p_value: 0.0
+          pass: false
+    nh_black:
+      M:
+        alpha: 13.0116
+        loc: 0.0
+        scale: 8.6705
+        n: 657
+        ks_test:
+          ks_statistic: 0.2193
+          p_value: 0.0
+          pass: false
+      F:
+        alpha: 12.9325
+        loc: 0.0
+        scale: 8.5159
+        n: 775
+        ks_test:
+          ks_statistic: 0.2183
+          p_value: 0.0
+          pass: false
+    nh_asian:
+      M:
+        alpha: 20.439
+        loc: 0.0
+        scale: 5.5788
+        n: 311
+        ks_test:
+          ks_statistic: 0.1661
+          p_value: 0.0
+          pass: false
+      F:
+        alpha: 21.7174
+        loc: 0.0
+        scale: 4.9706
+        n: 393
+        ks_test:
+          ks_statistic: 0.1889
+          p_value: 0.0
+          pass: false
+    other_multiracial:
+      M:
+        alpha: 11.382
+        loc: 0.0
+        scale: 10.1826
+        n: 215
+        ks_test:
+          ks_statistic: 0.2572
+          p_value: 0.0
+          pass: false
+      F:
+        alpha: 21.4134
+        loc: 0.0
+        scale: 4.9647
+        n: 209
+        ks_test:
+          ks_statistic: 0.2058
+          p_value: 0.0
+          pass: false
+  overall:
+    alpha: 15.7281
+    loc: 0.0
+    scale: 7.074
+    ks_test:
+      ks_statistic: 0.2045
+      p_value: 0.0
+      pass: false
+    n: 7496
+waist_cm:
+  description: Waist circumference
+  units: cm
+  distribution: normal
+  bounds:
+    min: 50
+    max: 180
+  strata:
+    mexican_american:
+      M:
+        mu: 102.5605
+        sigma: 14.7361
+        n: 704
+        ks_test:
+          ks_statistic: 0.0472
+          p_value: 0.0845
+          pass: true
+      F:
+        mu: 99.391
+        sigma: 15.2799
+        n: 721
+        ks_test:
+          ks_statistic: 0.0507
+          p_value: 0.0476
+          pass: false
+    other_hispanic:
+      M:
+        mu: 101.6358
+        sigma: 15.4566
+        n: 681
+        ks_test:
+          ks_statistic: 0.0583
+          p_value: 0.0187
+          pass: false
+      F:
+        mu: 96.1317
+        sigma: 14.6532
+        n: 796
+        ks_test:
+          ks_statistic: 0.0351
+          p_value: 0.2751
+          pass: true
+    nh_white:
+      M:
+        mu: 104.867
+        sigma: 16.5658
+        n: 3068
+        ks_test:
+          ks_statistic: 0.0374
+          p_value: 0.0004
+          pass: false
+      F:
+        mu: 99.534
+        sigma: 17.5622
+        n: 3390
+        ks_test:
+          ks_statistic: 0.0474
+          p_value: 0.0
+          pass: false
+    nh_black:
+      M:
+        mu: 100.501
+        sigma: 18.2123
+        n: 1386
+        ks_test:
+          ks_statistic: 0.0334
+          p_value: 0.0885
+          pass: true
+      F:
+        mu: 103.5262
+        sigma: 18.9642
+        n: 1568
+        ks_test:
+          ks_statistic: 0.041
+          p_value: 0.0101
+          pass: false
+    nh_asian:
+      M:
+        mu: 93.324
+        sigma: 11.9389
+        n: 633
+        ks_test:
+          ks_statistic: 0.0597
+          p_value: 0.0211
+          pass: false
+      F:
+        mu: 86.5595
+        sigma: 11.6844
+        n: 718
+        ks_test:
+          ks_statistic: 0.0472
+          p_value: 0.0795
+          pass: true
+    other_multiracial:
+      M:
+        mu: 102.8673
+        sigma: 18.2454
+        n: 419
+        ks_test:
+          ks_statistic: 0.0471
+          p_value: 0.3003
+          pass: true
+      F:
+        mu: 99.0191
+        sigma: 18.9574
+        n: 382
+        ks_test:
+          ks_statistic: 0.0488
+          p_value: 0.3129
+          pass: true
+  overall:
+    mu: 100.4096
+    sigma: 17.2452
+    ks_test:
+      ks_statistic: 0.0356
+      p_value: 0.0
+      pass: false
+    n: 14466
+weight_kg:
+  description: Body weight
+  units: kg
+  distribution: lognorm
+  bounds:
+    min: 30
+    max: 250
+  strata:
+    mexican_american:
+      M:
+        mu_log: 4.4498
+        sigma_log: 0.2129
+        loc: 0.0
+        scale: 85.6139
+        n: 727
+        ks_test:
+          ks_statistic: 0.0226
+          p_value: 0.8435
+          pass: true
+      F:
+        mu_log: 4.3103
+        sigma_log: 0.2375
+        loc: 0.0
+        scale: 74.4622
+        n: 752
+        ks_test:
+          ks_statistic: 0.0281
+          p_value: 0.5832
+          pass: true
+    other_hispanic:
+      M:
+        mu_log: 4.4296
+        sigma_log: 0.2236
+        loc: 0.0
+        scale: 83.8937
+        n: 705
+        ks_test:
+          ks_statistic: 0.0386
+          p_value: 0.2392
+          pass: true
+      F:
+        mu_log: 4.275
+        sigma_log: 0.2273
+        loc: 0.0
+        scale: 71.8821
+        n: 836
+        ks_test:
+          ks_statistic: 0.0268
+          p_value: 0.5777
+          pass: true
+    nh_white:
+      M:
+        mu_log: 4.483
+        sigma_log: 0.2268
+        loc: 0.0
+        scale: 88.4974
+        n: 3153
+        ks_test:
+          ks_statistic: 0.0305
+          p_value: 0.0055
+          pass: false
+      F:
+        mu_log: 4.3291
+        sigma_log: 0.2618
+        loc: 0.0
+        scale: 75.8733
+        n: 3527
+        ks_test:
+          ks_statistic: 0.0366
+          p_value: 0.0002
+          pass: false
+    nh_black:
+      M:
+        mu_log: 4.476
+        sigma_log: 0.2541
+        loc: 0.0
+        scale: 87.8815
+        n: 1441
+        ks_test:
+          ks_statistic: 0.0244
+          p_value: 0.3537
+          pass: true
+      F:
+        mu_log: 4.4312
+        sigma_log: 0.276
+        loc: 0.0
+        scale: 84.0322
+        n: 1655
+        ks_test:
+          ks_statistic: 0.0275
+          p_value: 0.1608
+          pass: true
+    nh_asian:
+      M:
+        mu_log: 4.3091
+        sigma_log: 0.1901
+        loc: 0.0
+        scale: 74.3736
+        n: 652
+        ks_test:
+          ks_statistic: 0.0417
+          p_value: 0.2014
+          pass: true
+      F:
+        mu_log: 4.098
+        sigma_log: 0.1868
+        loc: 0.0
+        scale: 60.2178
+        n: 769
+        ks_test:
+          ks_statistic: 0.0425
+          p_value: 0.1205
+          pass: true
+    other_multiracial:
+      M:
+        mu_log: 4.4775
+        sigma_log: 0.2528
+        loc: 0.0
+        scale: 88.0182
+        n: 433
+        ks_test:
+          ks_statistic: 0.0491
+          p_value: 0.2392
+          pass: true
+      F:
+        mu_log: 4.3513
+        sigma_log: 0.294
+        loc: 0.0
+        scale: 77.5821
+        n: 407
+        ks_test:
+          ks_statistic: 0.0361
+          p_value: 0.6503
+          pass: true
+  overall:
+    mu_log: 4.3854
+    sigma_log: 0.2624
+    loc: 0.0
+    scale: 80.2691
+    ks_test:
+      ks_statistic: 0.0166
+      p_value: 0.0005
+      pass: false
+    n: 15057
