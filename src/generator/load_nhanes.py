@@ -35,28 +35,32 @@ PROCESSED.mkdir(parents=True, exist_ok=True)
 # ── File manifest ──────────────────────────────────────────────────────────
 FILES = {
     "2017_2020": {
-        "P_DEMO.xpt":  "demographics",
-        "P_BMX.xpt":   "body_measures",
-        "P_BPXO.xpt":  "blood_pressure",
-        "P_TCHOL.xpt": "total_cholesterol",
-        "P_HDL.xpt":   "hdl_cholesterol",
-        "P_DIQ.xpt":   "diabetes_questionnaire",
-        "P_GHB.xpt":   "hba1c",
-        "P_GLU.xpt":   "fasting_glucose",
-        "P_SMQ.xpt":   "smoking",
-        "P_PAQ.xpt":   "physical_activity",
+        "P_DEMO.xpt":    "demographics",
+        "P_BMX.xpt":     "body_measures",
+        "P_BPXO.xpt":    "blood_pressure",
+        "P_TCHOL.xpt":   "total_cholesterol",
+        "P_HDL.xpt":     "hdl_cholesterol",
+        "P_DIQ.xpt":     "diabetes_questionnaire",
+        "P_GHB.xpt":     "hba1c",
+        "P_GLU.xpt":     "fasting_glucose",
+        "P_SMQ.xpt":     "smoking",
+        "P_PAQ.xpt":     "physical_activity",
+        "P_BIOPRO.xpt":  "biochemistry",
+        "P_ALB_CR.xpt":  "urine_albumin_creatinine",
     },
     "2021_2023": {
-        "DEMO_L.xpt":  "demographics",
-        "BMX_L.xpt":   "body_measures",
-        "BPXO_L.xpt":  "blood_pressure",
-        "TCHOL_L.xpt": "total_cholesterol",
-        "HDL_L.xpt":   "hdl_cholesterol",
-        "DIQ_L.xpt":   "diabetes_questionnaire",
-        "GHB_L.xpt":   "hba1c",
-        "GLU_L.xpt":   "fasting_glucose",
-        "SMQ_L.xpt":   "smoking",
-        "PAQ_L.xpt":   "physical_activity",
+        "DEMO_L.xpt":    "demographics",
+        "BMX_L.xpt":     "body_measures",
+        "BPXO_L.xpt":    "blood_pressure",
+        "TCHOL_L.xpt":   "total_cholesterol",
+        "HDL_L.xpt":     "hdl_cholesterol",
+        "DIQ_L.xpt":     "diabetes_questionnaire",
+        "GHB_L.xpt":     "hba1c",
+        "GLU_L.xpt":     "fasting_glucose",
+        "SMQ_L.xpt":     "smoking",
+        "PAQ_L.xpt":     "physical_activity",
+        "BIOPRO_L.xpt":  "biochemistry",
+        "ALB_CR_L.xpt":  "urine_albumin_creatinine",
     },
 }
 
@@ -94,6 +98,13 @@ RENAME = {
     "PAQ605":  "vigorous_work_activity",
     "PAQ620":  "moderate_work_activity",
     "PAD680":  "sedentary_minutes",
+    # Biochemistry — creatinine for eGFR
+    "LBXSCR":  "creatinine",
+    "LBDSCRSI": "creatinine_umol",
+    # Urine albumin-creatinine ratio
+    "URXUMA":  "urine_albumin",
+    "URXUCR":  "urine_creatinine",
+    "URDACT":  "albumin_creatinine_ratio",
 }
 
 
