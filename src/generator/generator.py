@@ -233,7 +233,7 @@ def sample_copula_features(
         elif feat == "total_cholesterol":
             val += (age - 50) * 0.30
         elif feat == "fasting_glucose":
-            val -= 15.0
+            val -= 7.0
 
         features[feat] = float(np.clip(val, lo, hi))
 
@@ -611,4 +611,4 @@ def main(n: int = 10_000):
 
 
 if __name__ == "__main__":
-    main(n=10_000)
+    main(n=100_000)
