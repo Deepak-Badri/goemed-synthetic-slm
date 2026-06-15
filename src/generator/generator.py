@@ -382,7 +382,8 @@ def assign_labels(
         t2dm_prob = findrisc_t2dm_risk(patient) * 0.10
         labels["diabetes"] = bool(rng.random() < t2dm_prob)
     labels["prediabetes"] = (not labels["diabetes"] and
-                             (hba1c >= 5.7 or fpg >= 100))
+                             (hba1c >= 5.8 or fpg >= 105) and
+                             rng.random() < 0.85)
 
     t2dm_prob = findrisc_t2dm_risk(patient)
     labels["t2dm_findrisc"] = bool(rng.random() < t2dm_prob * 0.35)
@@ -566,6 +567,7 @@ def print_prevalence_report(df: pd.DataFrame):
         ("copd",              df["copd"].mean(),               0.06, "ALA"),
         ("metabolic_syndrome",df["metabolic_syndrome"].mean(), 0.33, "ATP III"),
         ("hypothyroidism",    df["hypothyroidism"].mean(),     0.05, "NHANES"),
+        ("prediabetes", df["prediabetes"].mean(), 0.38, "CDC 2023"),
     ]
 
     log.info(f"  {'Label':<22} {'Synthetic':>9} {'Benchmark':>10} "
