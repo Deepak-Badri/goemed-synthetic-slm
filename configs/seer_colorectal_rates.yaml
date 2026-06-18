@@ -1,0 +1,164 @@
+colorectal_cancer:
+  rate_per: 100000
+  rates:
+    18_49_female_black:
+      age_group: '18_49'
+      annual_prob: 0.003151
+      race: black
+      sex: female
+    18_49_female_hispanic:
+      age_group: '18_49'
+      annual_prob: 0.002092
+      race: hispanic
+      sex: female
+    18_49_female_other:
+      age_group: '18_49'
+      annual_prob: 0.003762
+      race: other
+      sex: female
+    18_49_female_white:
+      age_group: '18_49'
+      annual_prob: 0.003105
+      race: white
+      sex: female
+    18_49_male_black:
+      age_group: '18_49'
+      annual_prob: 0.003883
+      race: black
+      sex: male
+    18_49_male_hispanic:
+      age_group: '18_49'
+      annual_prob: 0.003096
+      race: hispanic
+      sex: male
+    18_49_male_other:
+      age_group: '18_49'
+      annual_prob: 0.003983
+      race: other
+      sex: male
+    18_49_male_white:
+      age_group: '18_49'
+      annual_prob: 0.003823
+      race: white
+      sex: male
+    50_64_female_black:
+      age_group: '50_64'
+      annual_prob: 0.014335
+      race: black
+      sex: female
+    50_64_female_hispanic:
+      age_group: '50_64'
+      annual_prob: 0.009369
+      race: hispanic
+      sex: female
+    50_64_female_other:
+      age_group: '50_64'
+      annual_prob: 0.018433
+      race: other
+      sex: female
+    50_64_female_white:
+      age_group: '50_64'
+      annual_prob: 0.014161
+      race: white
+      sex: female
+    50_64_male_black:
+      age_group: '50_64'
+      annual_prob: 0.012557
+      race: black
+      sex: male
+    50_64_male_hispanic:
+      age_group: '50_64'
+      annual_prob: 0.008678
+      race: hispanic
+      sex: male
+    50_64_male_other:
+      age_group: '50_64'
+      annual_prob: 0.014247
+      race: other
+      sex: male
+    50_64_male_white:
+      age_group: '50_64'
+      annual_prob: 0.012281
+      race: white
+      sex: male
+    65_74_female_black:
+      age_group: '65_74'
+      annual_prob: 0.027656
+      race: black
+      sex: female
+    65_74_female_hispanic:
+      age_group: '65_74'
+      annual_prob: 0.01947
+      race: hispanic
+      sex: female
+    65_74_female_other:
+      age_group: '65_74'
+      annual_prob: 0.028709
+      race: other
+      sex: female
+    65_74_female_white:
+      age_group: '65_74'
+      annual_prob: 0.026885
+      race: white
+      sex: female
+    65_74_male_black:
+      age_group: '65_74'
+      annual_prob: 0.022657
+      race: black
+      sex: male
+    65_74_male_hispanic:
+      age_group: '65_74'
+      annual_prob: 0.015531
+      race: hispanic
+      sex: male
+    65_74_male_other:
+      age_group: '65_74'
+      annual_prob: 0.022094
+      race: other
+      sex: male
+    65_74_male_white:
+      age_group: '65_74'
+      annual_prob: 0.02182
+      race: white
+      sex: male
+    75_plus_female_black:
+      age_group: 75_plus
+      annual_prob: 0.032036
+      race: black
+      sex: female
+    75_plus_female_hispanic:
+      age_group: 75_plus
+      annual_prob: 0.022993
+      race: hispanic
+      sex: female
+    75_plus_female_other:
+      age_group: 75_plus
+      annual_prob: 0.027659
+      race: other
+      sex: female
+    75_plus_female_white:
+      age_group: 75_plus
+      annual_prob: 0.030781
+      race: white
+      sex: female
+    75_plus_male_black:
+      age_group: 75_plus
+      annual_prob: 0.024284
+      race: black
+      sex: male
+    75_plus_male_hispanic:
+      age_group: 75_plus
+      annual_prob: 0.017791
+      race: hispanic
+      sex: male
+    75_plus_male_other:
+      age_group: 75_plus
+      annual_prob: 0.021606
+      race: other
+      sex: male
+    75_plus_male_white:
+      age_group: 75_plus
+      annual_prob: 0.023415
+      race: white
+      sex: male
+  source: SEER 1975-2023
