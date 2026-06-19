@@ -1,0 +1,21 @@
+model,label,auroc,avg_prec,f1,brier,prevalence
+Logistic Regression,hypertension,0.9812,0.983,0.9222,0.0524,0.4822
+Logistic Regression,diabetes,0.943,0.8041,0.6655,0.0922,0.1419
+Logistic Regression,cvd_risk,0.6795,0.2316,0.3287,0.2267,0.1484
+Logistic Regression,ckd,0.868,0.5072,0.481,0.1514,0.1255
+Logistic Regression,osa,0.7414,0.4556,0.4973,0.2088,0.2359
+Logistic Regression,depression,0.5716,0.137,0.2186,0.2456,0.1109
+Logistic Regression,copd,0.7706,0.2217,0.2997,0.1901,0.0783
+Logistic Regression,metabolic_syndrome,0.8945,0.8252,0.7579,0.1321,0.3617
+Logistic Regression,hypothyroidism,0.5959,0.0927,0.1583,0.243,0.0709
+Logistic Regression,prediabetes,0.7486,0.4602,0.6446,0.219,0.3433
+XGBoost,hypertension,1.0,1.0,0.9983,0.0016,0.4822
+XGBoost,diabetes,0.9549,0.8343,0.6995,0.0733,0.1419
+XGBoost,cvd_risk,0.6835,0.2306,0.3327,0.2196,0.1484
+XGBoost,ckd,0.9219,0.6563,0.5668,0.1164,0.1255
+XGBoost,osa,0.7539,0.4767,0.5078,0.2029,0.2359
+XGBoost,depression,0.5696,0.14,0.2137,0.2423,0.1109
+XGBoost,copd,0.7855,0.2376,0.2869,0.2321,0.0783
+XGBoost,metabolic_syndrome,1.0,1.0,0.9975,0.0013,0.3617
+XGBoost,hypothyroidism,0.5771,0.0868,0.1516,0.2321,0.0709
+XGBoost,prediabetes,0.9406,0.8312,0.8467,0.1142,0.3433
