@@ -44,7 +44,7 @@ np.random.seed(SEED)
 LABEL_COLS = [
     "hypertension", "diabetes", "cvd_risk", "ckd",
     "osa", "depression", "copd", "metabolic_syndrome",
-    "hypothyroidism", "prediabetes",
+    "hypothyroidism", "prediabetes", "colorectal_cancer",
 ]
 
 # ── Human-readable label names ─────────────────────────────────────────────
@@ -59,6 +59,7 @@ LABEL_NAMES = {
     "metabolic_syndrome": "METABOLIC_SYNDROME",
     "hypothyroidism":     "HYPOTHYROIDISM",
     "prediabetes":        "PREDIABETES",
+    "colorectal_cancer":  "COLORECTAL_CANCER",
 }
 
 # ── Race display names ─────────────────────────────────────────────────────

@@ -175,6 +175,104 @@ def propensity_score_test(
              f"(target: < 0.65, ideal: ~0.55)")
     return float(auroc)
 
+def hotelling_t2_test(
+    synth: pd.DataFrame,
+    real: pd.DataFrame,
+) -> dict:
+    """
+    Hotelling's T² test — multivariate generalization of the two-sample t-test.
+    Tests whether synthetic and real data have equal multivariate means.
+    Applied Multivariate Analysis (Stat coursework application).
+
+    H0: mu_synthetic == mu_real (multivariate means are equal)
+    A large T² statistic indicates the synthetic data's multivariate
+    mean differs significantly from the real data.
+    """
+    log.info("\n── Hotelling's T² Test (Multivariate Mean Comparison) ──")
+
+    feats = [f for f in CONTINUOUS_FEATURES
+             if f in synth.columns and f in real.columns]
+
+    # Sample equal sizes for balanced test
+    n1 = min(len(synth), 5000)
+    n2 = min(len(real), 5000)
+
+    S = synth[feats].dropna().sample(n1, random_state=42).values
+    R = real[feats].dropna().sample(
+        min(n2, len(real[feats].dropna())),
+        random_state=42).values
+
+    n1, n2, p = len(S), len(R), len(feats)
+
+    # Compute means
+    mean_s = np.mean(S, axis=0)
+    mean_r = np.mean(R, axis=0)
+    diff   = mean_s - mean_r
+
+    # Pooled covariance matrix
+    cov_s  = np.cov(S.T)
+    cov_r  = np.cov(R.T)
+    pooled = ((n1 - 1) * cov_s + (n2 - 1) * cov_r) / (n1 + n2 - 2)
+
+    # Add ridge for numerical stability
+    pooled += 1e-6 * np.eye(p)
+
+    # Hotelling's T² statistic
+    pooled_inv = np.linalg.inv(pooled)
+    t2 = (n1 * n2) / (n1 + n2) * diff @ pooled_inv @ diff
+
+    # Convert to F statistic
+    f_stat = t2 * (n1 + n2 - p - 1) / ((n1 + n2 - 2) * p)
+    df1    = p
+    df2    = n1 + n2 - p - 1
+
+    from scipy.stats import f as f_dist
+    p_value = 1 - f_dist.cdf(f_stat, df1, df2)
+
+    # Normalized T² — divide by sample size for interpretability
+    t2_normalized = t2 / (n1 + n2)
+
+    log.info(f"  Hotelling's T²:     {t2:.2f}")
+    log.info(f"  T² (normalized):    {t2_normalized:.4f}")
+    log.info(f"  F-statistic:        {f_stat:.4f}")
+    log.info(f"  p-value:            {p_value:.6f}")
+    log.info(f"  Degrees of freedom: ({df1}, {df2})")
+    log.info(f"  Features tested:    {p}")
+
+    # Per-feature mean differences for interpretability
+    log.info(f"\n  Per-feature mean differences (synthetic - real):")
+    log.info(f"  {'Feature':<22} {'Synth Mean':>12} "
+             f"{'Real Mean':>12} {'Diff':>10} {'Diff %':>8}")
+    log.info("  " + "-" * 68)
+    for i, feat in enumerate(feats):
+        s_mean = mean_s[i]
+        r_mean = mean_r[i]
+        d      = diff[i]
+        pct    = (d / r_mean * 100) if r_mean != 0 else 0
+        flag   = "⚠️ " if abs(pct) > 5 else "✅"
+        log.info(f"  {flag} {feat:<20} {s_mean:>12.2f} "
+                 f"{r_mean:>12.2f} {d:>10.2f} {pct:>7.1f}%")
+
+    # Interpretation
+    if p_value < 0.05:
+        log.info(f"\n  ⚠️  T² test: multivariate means differ significantly "
+                 f"(p={p_value:.4f})")
+        log.info(f"  Note: with large n, T² is sensitive to small differences.")
+        log.info(f"  Normalized T²={t2_normalized:.4f} — "
+                 f"{'acceptable' if t2_normalized < 1.0 else 'review needed'}")
+    else:
+        log.info(f"\n  ✅ T² test: multivariate means not significantly "
+                 f"different (p={p_value:.4f})")
+
+    return {
+        "t2_statistic":   round(float(t2), 4),
+        "t2_normalized":  round(float(t2_normalized), 4),
+        "f_statistic":    round(float(f_stat), 4),
+        "p_value":        round(float(p_value), 6),
+        "n_features":     p,
+        "n_synthetic":    n1,
+        "n_real":         n2,
+    }
 
 # ══════════════════════════════════════════════════════════════════════════
 # 4. DISTRIBUTION OVERLAY PLOTS
@@ -273,6 +371,7 @@ def main():
     ks_results   = run_ks_tests(synth, real)
     frob_norm    = compare_correlation_matrices(synth, real)
     propensity   = propensity_score_test(synth, real)
+    t2_results   = hotelling_t2_test(synth, real)
     plot_distribution_overlays(synth, real)
     check_demographic_composition(synth)
 

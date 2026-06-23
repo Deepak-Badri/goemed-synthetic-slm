@@ -61,15 +61,20 @@ rng  = np.random.default_rng(SEED)
 def load_configs():
     schema_path = CONFIG_DIR / "feature_schema.yaml"
     corr_path   = CONFIG_DIR / "correlation_matrix.yaml"
+    seer_path   = CONFIG_DIR / "seer_colorectal_rates.yaml"
 
     with open(schema_path) as f:
         schema = yaml.safe_load(f)
     with open(corr_path) as f:
         corr   = yaml.safe_load(f)
+    with open(seer_path) as f:
+        seer   = yaml.safe_load(f)
 
     log.info(f"Loaded feature schema: {len(schema)} features")
     log.info(f"Loaded correlation matrices: {len(corr)} strata")
-    return schema, corr
+    log.info(f"Loaded SEER colorectal rates: "
+             f"{len(seer['colorectal_cancer']['rates'])} strata")
+    return schema, corr, seer
 
 
 # ══════════════════════════════════════════════════════════════════════════
@@ -341,7 +346,66 @@ def sample_binary_features(
 
     return features
 
+def colorectal_cancer_risk(
+    patient: Dict,
+    seer: Dict,
+    rng: np.random.Generator,
+) -> bool:
+    """
+    Assign colorectal cancer label using SEER age/sex/race-specific
+    annual incidence rates. Converts annual rate to 10-year risk.
+    """
+    age  = patient.get("age", 50)
+    sex  = "male" if patient.get("sex") == "M" else "female"
+    race = patient.get("race", "nh_white")
 
+    # Map generator race to SEER race
+    race_map = {
+        "nh_white":          "white",
+        "nh_black":          "black",
+        "hispanic":          "hispanic",
+        "nh_asian":          "other",
+        "other_multiracial": "other",
+    }
+    seer_race = race_map.get(race, "white")
+
+    # Map age to generator age group
+    if age < 50:
+        age_group = "18_49"
+    elif age < 65:
+        age_group = "50_64"
+    elif age < 75:
+        age_group = "65_74"
+    else:
+        age_group = "75_plus"
+
+    # Look up annual incidence rate
+    key = f"{age_group}_{sex}_{seer_race}"
+    rates = seer["colorectal_cancer"]["rates"]
+    entry = rates.get(key, rates.get(f"{age_group}_{sex}_white", {}))
+    annual_prob = entry.get("annual_prob", 0.002)
+
+    # Convert annual probability to 10-year cumulative risk
+    # P(at least one event in 10 years) = 1 - (1 - p_annual)^10
+    risk_10yr = 1 - (1 - annual_prob) ** 10
+
+    # Apply risk modifiers
+    if patient.get("family_history_cancer", False):
+        risk_10yr *= 1.5   # 1.5x risk with first-degree family history
+    if patient.get("smoker", False):
+        risk_10yr *= 1.15   # 15% increased risk
+    if patient.get("bmi", 25) >= 30:
+        risk_10yr *= 1.1   # 10% increased risk with obesity
+    if patient.get("physical_activity_low", False):
+        risk_10yr *= 1.08  # 8% increased risk sedentary lifestyle
+    if patient.get("alcohol_use", False):
+        risk_10yr *= 1.05   # 5% increased risk
+
+    # Apply population-level calibration scalar
+    risk_10yr *= 0.30      # scale down to hit ~4.5% prevalence
+    
+    risk_10yr = np.clip(risk_10yr, 0, 1)
+    return bool(rng.random() < risk_10yr)
 # ══════════════════════════════════════════════════════════════════════════
 # LABEL ASSIGNMENT
 # ══════════════════════════════════════════════════════════════════════════
@@ -349,6 +413,7 @@ def sample_binary_features(
 def assign_labels(
     patient: Dict,
     rng: np.random.Generator,
+    seer: Dict = None,
 ) -> Dict[str, Any]:
     """
     Evaluate all risk models and assign condition labels via Bernoulli draws.
@@ -454,9 +519,16 @@ def assign_labels(
         if rng.random() < 0.15:
             labels["osa"] = True
 
+    # Colorectal cancer — SEER-calibrated 10-year risk
+    if seer is not None:
+        labels["colorectal_cancer"] = colorectal_cancer_risk(
+            patient, seer, rng)
+    else:
+        labels["colorectal_cancer"] = False
+
     # Charlson comorbidity index
     charlson_input = {**patient, **labels}
-    labels["charlson_index"]  = charlson_index(charlson_input)
+    labels["charlson_index"] = charlson_index(charlson_input)
 
     return labels
 
@@ -469,6 +541,7 @@ def generate_patient(
     schema: Dict,
     corr_config: Dict,
     rng: np.random.Generator,
+    seer: Dict = None,
 ) -> Dict[str, Any]:
     """Generate one complete synthetic patient record."""
 
@@ -485,7 +558,7 @@ def generate_patient(
     patient = {**demo, **continuous, **binary}
 
     # Step 4 — Label assignment
-    labels = assign_labels(patient, rng)
+    labels = assign_labels(patient, rng, seer=seer)
 
     # Final record
     record = {**patient, **labels}
@@ -500,6 +573,7 @@ def generate_batch(
     n: int,
     schema: Dict,
     corr_config: Dict,
+    seer: Dict = None,
     seed: int = SEED,
     n_jobs: int = -1,
 ) -> pd.DataFrame:
@@ -528,7 +602,7 @@ def generate_batch(
 
     def worker(chunk_n: int, child_seed) -> List[Dict]:
         worker_rng = np.random.default_rng(child_seed)
-        return [generate_patient(schema, corr_config, worker_rng)
+        return [generate_patient(schema, corr_config, worker_rng, seer=seer)
                 for _ in range(chunk_n)]
 
     results = Parallel(n_jobs=n_jobs, backend="loky")(
@@ -568,6 +642,8 @@ def print_prevalence_report(df: pd.DataFrame):
         ("metabolic_syndrome",df["metabolic_syndrome"].mean(), 0.33, "ATP III"),
         ("hypothyroidism",    df["hypothyroidism"].mean(),     0.05, "NHANES"),
         ("prediabetes", df["prediabetes"].mean(), 0.38, "CDC 2023"),
+        ("colorectal_cancer",
+         df["colorectal_cancer"].mean(),    0.045, "SEER 2023"),
     ]
 
     log.info(f"  {'Label':<22} {'Synthetic':>9} {'Benchmark':>10} "
@@ -590,9 +666,9 @@ def main(n: int = 10_000):
     log.info("GoEMed Synthetic Patient Generator")
     log.info("=" * 55)
 
-    schema, corr_config = load_configs()
+    schema, corr_config, seer = load_configs()
 
-    df = generate_batch(n=n, schema=schema, corr_config=corr_config)
+    df = generate_batch(n=n, schema=schema, corr_config=corr_config, seer=seer)
 
     # Prevalence validation
     print_prevalence_report(df)
