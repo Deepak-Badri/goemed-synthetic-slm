@@ -1,0 +1,12 @@
+model,label,auroc,f1,brier
+Bio_ClinicalBERT,hypertension,0.9994,0.9977,0.002
+Bio_ClinicalBERT,diabetes,0.9974,0.9307,0.0135
+Bio_ClinicalBERT,cvd_risk,0.9864,0.7861,0.0416
+Bio_ClinicalBERT,ckd,0.9925,0.8591,0.0279
+Bio_ClinicalBERT,osa,0.9855,0.8554,0.0442
+Bio_ClinicalBERT,depression,0.9752,0.734,0.0441
+Bio_ClinicalBERT,copd,0.9797,0.7024,0.0388
+Bio_ClinicalBERT,metabolic_syndrome,0.9913,0.9198,0.0389
+Bio_ClinicalBERT,hypothyroidism,0.9779,0.7007,0.0389
+Bio_ClinicalBERT,prediabetes,0.9949,0.9508,0.0288
+Bio_ClinicalBERT,colorectal_cancer,0.9623,0.6013,0.0238
