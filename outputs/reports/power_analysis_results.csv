@@ -1,0 +1,11 @@
+model,train_size,macro_auroc
+XGBoost,1000,0.7645
+XGBoost,2000,0.767
+XGBoost,5000,0.7793
+XGBoost,10000,0.7858
+XGBoost,20000,0.7958
+Bio_ClinicalBERT,1000,0.9861
+Bio_ClinicalBERT,2000,0.9857
+Bio_ClinicalBERT,5000,0.9856
+Bio_ClinicalBERT,10000,0.9858
+Bio_ClinicalBERT,20000,0.9863
