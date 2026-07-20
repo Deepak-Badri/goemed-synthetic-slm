@@ -33,11 +33,7 @@ logging.basicConfig(
 log = logging.getLogger(__name__)
 
 # ── Config ─────────────────────────────────────────────────────────────────
-MODEL_PATH  = os.getenv(
-    "MODEL_PATH",
-    str(Path(__file__).resolve().parents[2] /
-        "outputs/checkpoints/bio_clinicalbert_goemed")
-)
+MODEL_PATH  = os.getenv("MODEL_PATH", "/app/model")
 S3_BUCKET   = os.getenv("MODEL_S3_BUCKET", "goemed-model-artifacts")
 S3_PREFIX   = os.getenv(
     "MODEL_S3_PREFIX",
