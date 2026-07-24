@@ -1,0 +1,266 @@
+source: "NCI State Cancer Profiles \u2014 SEER+NPCR 2018-2022"
+cancer_site: Colon and Rectum
+national_average_rate: 36.7
+rate_unit: Age-adjusted cases per 100,000 population
+standard_population: 2000 US Standard
+states:
+  kentucky:
+    display_name: Kentucky
+    rate: 46.5
+    multiplier: 1.2671
+    cancer_alley: true
+  mississippi:
+    display_name: Mississippi
+    rate: 46.0
+    multiplier: 1.2534
+    cancer_alley: true
+  west_virginia:
+    display_name: West Virginia
+    rate: 44.4
+    multiplier: 1.2098
+    cancer_alley: true
+  louisiana:
+    display_name: Louisiana
+    rate: 44.3
+    multiplier: 1.2071
+    cancer_alley: true
+  arkansas:
+    display_name: Arkansas
+    rate: 42.2
+    multiplier: 1.1499
+    cancer_alley: true
+  alaska:
+    display_name: Alaska
+    rate: 41.1
+    multiplier: 1.1199
+    cancer_alley: false
+  oklahoma:
+    display_name: Oklahoma
+    rate: 40.6
+    multiplier: 1.1063
+    cancer_alley: false
+  iowa:
+    display_name: Iowa
+    rate: 40.3
+    multiplier: 1.0981
+    cancer_alley: false
+  alabama:
+    display_name: Alabama
+    rate: 40.2
+    multiplier: 1.0954
+    cancer_alley: true
+  missouri:
+    display_name: Missouri
+    rate: 40.2
+    multiplier: 1.0954
+    cancer_alley: false
+  georgia:
+    display_name: Georgia
+    rate: 39.9
+    multiplier: 1.0872
+    cancer_alley: false
+  south_dakota:
+    display_name: South Dakota
+    rate: 39.5
+    multiplier: 1.0763
+    cancer_alley: false
+  indiana:
+    display_name: Indiana
+    rate: 39.4
+    multiplier: 1.0736
+    cancer_alley: false
+  kansas:
+    display_name: Kansas
+    rate: 39.4
+    multiplier: 1.0736
+    cancer_alley: false
+  illinois:
+    display_name: Illinois
+    rate: 39.1
+    multiplier: 1.0654
+    cancer_alley: false
+  tennessee:
+    display_name: Tennessee
+    rate: 38.8
+    multiplier: 1.0572
+    cancer_alley: false
+  nebraska:
+    display_name: Nebraska
+    rate: 38.6
+    multiplier: 1.0518
+    cancer_alley: false
+  north_dakota:
+    display_name: North Dakota
+    rate: 38.6
+    multiplier: 1.0518
+    cancer_alley: false
+  ohio:
+    display_name: Ohio
+    rate: 38.4
+    multiplier: 1.0463
+    cancer_alley: false
+  new_jersey:
+    display_name: New Jersey
+    rate: 38.3
+    multiplier: 1.0436
+    cancer_alley: false
+  texas:
+    display_name: Texas
+    rate: 38.3
+    multiplier: 1.0436
+    cancer_alley: false
+  hawaii:
+    display_name: Hawaii
+    rate: 38.2
+    multiplier: 1.0409
+    cancer_alley: false
+  pennsylvania:
+    display_name: Pennsylvania
+    rate: 37.1
+    multiplier: 1.0109
+    cancer_alley: false
+  national_average:
+    display_name: US National Average
+    rate: 36.7
+    multiplier: 1.0
+    cancer_alley: false
+  montana:
+    display_name: Montana
+    rate: 36.4
+    multiplier: 0.9918
+    cancer_alley: false
+  district_of_columbia:
+    display_name: District of Columbia
+    rate: 36.3
+    multiplier: 0.9891
+    cancer_alley: false
+  minnesota:
+    display_name: Minnesota
+    rate: 36.3
+    multiplier: 0.9891
+    cancer_alley: false
+  florida:
+    display_name: Florida
+    rate: 36.1
+    multiplier: 0.9837
+    cancer_alley: false
+  wyoming:
+    display_name: Wyoming
+    rate: 36.1
+    multiplier: 0.9837
+    cancer_alley: false
+  south_carolina:
+    display_name: South Carolina
+    rate: 35.9
+    multiplier: 0.9782
+    cancer_alley: false
+  new_york:
+    display_name: New York
+    rate: 35.8
+    multiplier: 0.9755
+    cancer_alley: false
+  maine:
+    display_name: Maine
+    rate: 35.7
+    multiplier: 0.9728
+    cancer_alley: false
+  michigan:
+    display_name: Michigan
+    rate: 35.6
+    multiplier: 0.97
+    cancer_alley: false
+  idaho:
+    display_name: Idaho
+    rate: 35.5
+    multiplier: 0.9673
+    cancer_alley: false
+  north_carolina:
+    display_name: North Carolina
+    rate: 35.5
+    multiplier: 0.9673
+    cancer_alley: false
+  maryland:
+    display_name: Maryland
+    rate: 35.1
+    multiplier: 0.9564
+    cancer_alley: false
+  nevada:
+    display_name: Nevada
+    rate: 34.9
+    multiplier: 0.951
+    cancer_alley: false
+  wisconsin:
+    display_name: Wisconsin
+    rate: 34.9
+    multiplier: 0.951
+    cancer_alley: false
+  connecticut:
+    display_name: Connecticut
+    rate: 34.6
+    multiplier: 0.9428
+    cancer_alley: false
+  new_hampshire:
+    display_name: New Hampshire
+    rate: 34.6
+    multiplier: 0.9428
+    cancer_alley: false
+  california:
+    display_name: California
+    rate: 34.2
+    multiplier: 0.9319
+    cancer_alley: false
+  washington:
+    display_name: Washington
+    rate: 34.0
+    multiplier: 0.9264
+    cancer_alley: false
+  virginia:
+    display_name: Virginia
+    rate: 33.8
+    multiplier: 0.921
+    cancer_alley: false
+  delaware:
+    display_name: Delaware
+    rate: 33.6
+    multiplier: 0.9155
+    cancer_alley: false
+  new_mexico:
+    display_name: New Mexico
+    rate: 33.2
+    multiplier: 0.9046
+    cancer_alley: false
+  oregon:
+    display_name: Oregon
+    rate: 32.2
+    multiplier: 0.8774
+    cancer_alley: false
+  arizona:
+    display_name: Arizona
+    rate: 32.0
+    multiplier: 0.8719
+    cancer_alley: false
+  rhode_island:
+    display_name: Rhode Island
+    rate: 32.0
+    multiplier: 0.8719
+    cancer_alley: false
+  vermont:
+    display_name: Vermont
+    rate: 32.0
+    multiplier: 0.8719
+    cancer_alley: false
+  massachusetts:
+    display_name: Massachusetts
+    rate: 31.3
+    multiplier: 0.8529
+    cancer_alley: false
+  colorado:
+    display_name: Colorado
+    rate: 31.2
+    multiplier: 0.8501
+    cancer_alley: false
+  utah:
+    display_name: Utah
+    rate: 29.7
+    multiplier: 0.8093
+    cancer_alley: false
