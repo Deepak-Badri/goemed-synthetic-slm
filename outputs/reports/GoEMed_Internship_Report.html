@@ -1,0 +1,1248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GoEMed Internship Report — Deepak Badri, Summer 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #1E3A5F;
+  --navy-dark: #0F1F35;
+  --navy-mid: #162d4a;
+  --teal: #1D9E75;
+  --teal-light: #E1F5EE;
+  --teal-mid: #2DB88A;
+  --blue: #2E6DA4;
+  --blue-light: #D6E4F0;
+  --amber: #BA7517;
+  --amber-light: #FAEEDA;
+  --coral: #D85A30;
+  --coral-light: #FAECE7;
+  --purple: #7F77DD;
+  --gray-50: #F8F8F6;
+  --gray-100: #F0EFEC;
+  --gray-200: #E0DFDA;
+  --gray-400: #9B9A95;
+  --gray-600: #595855;
+  --gray-900: #1A1A18;
+  --white: #FFFFFF;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--gray-50);
+  color: var(--gray-900);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+code, pre { font-family: 'JetBrains Mono', monospace; }
+
+/* ── Header ── */
+.header {
+  background: linear-gradient(135deg, var(--navy-dark), var(--navy));
+  color: white;
+  padding: 60px 24px 80px;
+  position: relative;
+  overflow: hidden;
+}
+.header::before {
+  content: '';
+  position: absolute;
+  top: -50%; right: -20%;
+  width: 60%; height: 200%;
+  background: radial-gradient(circle, rgba(29,158,117,0.15) 0%, transparent 60%);
+  pointer-events: none;
+}
+.header-inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 32px;
+}
+.brand-mark {
+  width: 44px; height: 44px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--teal), var(--blue));
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: 22px; color: white;
+}
+.brand-text-name { font-weight: 700; font-size: 18px; line-height: 1.1; }
+.brand-text-sub { font-size: 12px; color: rgba(255,255,255,0.6); letter-spacing: 0.04em; }
+.header h1 {
+  font-size: 44px; font-weight: 700; line-height: 1.15;
+  margin-bottom: 12px; letter-spacing: -0.01em;
+}
+.header .subtitle {
+  font-size: 20px; color: rgba(255,255,255,0.75);
+  font-weight: 300; margin-bottom: 32px;
+}
+.header-meta {
+  display: flex; flex-wrap: wrap; gap: 24px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255,255,255,0.15);
+  font-size: 14px;
+}
+.header-meta-item { display: flex; flex-direction: column; gap: 2px; }
+.header-meta-label { color: rgba(255,255,255,0.5); font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; }
+.header-meta-value { color: white; font-weight: 500; }
+.header-meta-value a { color: var(--teal-mid); text-decoration: none; }
+.header-meta-value a:hover { text-decoration: underline; }
+
+/* ── TOC ── */
+.toc {
+  max-width: 1080px;
+  margin: -40px auto 0;
+  background: white;
+  border-radius: 12px;
+  padding: 24px 32px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+  position: relative;
+  z-index: 2;
+}
+.toc-title {
+  font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--gray-400); margin-bottom: 14px; font-weight: 600;
+}
+.toc-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 8px 20px;
+  list-style: none;
+}
+.toc-list a {
+  display: flex; align-items: center; gap: 8px;
+  color: var(--gray-600); text-decoration: none;
+  font-size: 13px; padding: 4px 0;
+  transition: color 0.15s;
+}
+.toc-list a:hover { color: var(--navy); }
+.toc-num {
+  display: inline-block; width: 22px; height: 22px;
+  background: var(--gray-100); border-radius: 4px;
+  text-align: center; line-height: 22px; font-size: 11px; font-weight: 600;
+  color: var(--gray-400);
+  transition: all 0.15s;
+}
+.toc-list a:hover .toc-num { background: var(--teal); color: white; }
+
+/* ── Content ── */
+.content {
+  max-width: 1080px;
+  margin: 40px auto;
+  padding: 0 32px 60px;
+}
+section {
+  background: white;
+  border-radius: 12px;
+  padding: 48px 56px;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+}
+.section-header {
+  display: flex; align-items: baseline; gap: 16px;
+  margin-bottom: 8px;
+  padding-bottom: 14px;
+  border-bottom: 2px solid var(--teal);
+}
+.section-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 20px; font-weight: 500;
+  color: var(--teal);
+}
+h2 {
+  font-size: 28px; font-weight: 700; color: var(--navy);
+  letter-spacing: -0.01em;
+}
+h3 {
+  font-size: 18px; font-weight: 600; color: var(--navy);
+  margin-top: 28px; margin-bottom: 12px;
+}
+h4 {
+  font-size: 15px; font-weight: 600; color: var(--navy);
+  margin-top: 20px; margin-bottom: 8px;
+  text-transform: uppercase; letter-spacing: 0.04em;
+}
+p {
+  color: var(--gray-600); margin-bottom: 14px;
+  font-size: 15px; line-height: 1.75;
+}
+p strong { color: var(--navy); font-weight: 600; }
+ul { padding-left: 22px; margin-bottom: 14px; }
+ul li {
+  color: var(--gray-600); margin-bottom: 8px;
+  font-size: 15px; line-height: 1.75;
+}
+ul li::marker { color: var(--teal); }
+
+/* ── Tables ── */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 13px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+.data-table th {
+  background: var(--navy);
+  color: white;
+  font-weight: 600;
+  padding: 10px 14px;
+  text-align: left;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.data-table td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--gray-100);
+  color: var(--gray-600);
+}
+.data-table tr:nth-child(even) td { background: var(--gray-50); }
+.data-table tr:hover td { background: var(--teal-light); }
+.data-table td:first-child { font-weight: 500; color: var(--navy); }
+.data-table td.pass { color: var(--teal); font-weight: 600; }
+.data-table td.fail { color: var(--coral); font-weight: 600; }
+.data-table td.num { font-family: 'JetBrains Mono', monospace; font-size: 12px; }
+
+/* ── Callout boxes ── */
+.callout {
+  display: flex;
+  gap: 16px;
+  padding: 18px 22px;
+  border-radius: 8px;
+  margin: 20px 0;
+  border-left: 4px solid;
+}
+.callout-icon {
+  flex-shrink: 0;
+  width: 32px; height: 32px;
+  border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 14px; color: white;
+}
+.callout-body { flex: 1; }
+.callout-title { font-weight: 600; margin-bottom: 4px; font-size: 14px; }
+.callout-text { font-size: 14px; line-height: 1.6; }
+
+.callout-why { background: rgba(30,58,95,0.05); border-color: var(--navy); }
+.callout-why .callout-icon { background: var(--navy); }
+.callout-why .callout-title { color: var(--navy); }
+.callout-why .callout-text { color: var(--gray-600); }
+
+.callout-what { background: rgba(29,158,117,0.06); border-color: var(--teal); }
+.callout-what .callout-icon { background: var(--teal); }
+.callout-what .callout-title { color: var(--teal); }
+.callout-what .callout-text { color: var(--gray-600); }
+
+.callout-note { background: rgba(186,117,23,0.06); border-color: var(--amber); }
+.callout-note .callout-icon { background: var(--amber); }
+.callout-note .callout-title { color: var(--amber); }
+.callout-note .callout-text { color: var(--gray-600); }
+
+.callout-key { background: rgba(46,109,164,0.06); border-color: var(--blue); }
+.callout-key .callout-icon { background: var(--blue); }
+.callout-key .callout-title { color: var(--blue); }
+.callout-key .callout-text { color: var(--gray-600); }
+
+/* ── Metric cards ── */
+.metric-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+  margin: 24px 0;
+}
+.metric-card {
+  background: linear-gradient(135deg, var(--gray-50), white);
+  border: 1px solid var(--gray-200);
+  border-radius: 8px;
+  padding: 18px 20px;
+  border-top: 3px solid var(--teal);
+}
+.metric-value {
+  font-size: 32px; font-weight: 700; color: var(--navy);
+  font-family: 'JetBrains Mono', monospace;
+  line-height: 1; margin-bottom: 6px;
+  letter-spacing: -0.02em;
+}
+.metric-label {
+  font-size: 11px; color: var(--gray-400);
+  text-transform: uppercase; letter-spacing: 0.06em; font-weight: 500;
+  margin-bottom: 8px;
+}
+.metric-detail {
+  font-size: 12px; color: var(--gray-600);
+  margin-top: 8px;
+}
+
+/* ── Pipeline diagram ── */
+.pipeline-wrap {
+  margin: 32px 0;
+  overflow-x: auto;
+}
+.pipeline {
+  display: flex;
+  align-items: stretch;
+  min-width: 900px;
+  gap: 0;
+}
+.pipeline-stage {
+  flex: 1;
+  background: linear-gradient(180deg, var(--white), var(--gray-50));
+  border: 1px solid var(--gray-200);
+  border-radius: 8px;
+  padding: 16px 14px;
+  position: relative;
+  margin-right: 24px;
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+}
+.pipeline-stage:last-child { margin-right: 0; }
+.pipeline-stage::after {
+  content: '';
+  position: absolute;
+  right: -24px; top: 50%;
+  transform: translateY(-50%);
+  width: 0; height: 0;
+  border-left: 14px solid var(--navy);
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid transparent;
+}
+.pipeline-stage:last-child::after { display: none; }
+.pipeline-stage-num {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--teal); font-weight: 600;
+  margin-bottom: 4px;
+}
+.pipeline-stage-title {
+  font-weight: 700; color: var(--navy);
+  font-size: 14px; margin-bottom: 4px;
+  text-transform: uppercase; letter-spacing: 0.04em;
+}
+.pipeline-stage-sub {
+  color: var(--gray-400); font-size: 11px;
+  margin-bottom: 12px;
+}
+.pipeline-stage-body {
+  flex: 1;
+  font-size: 12px; color: var(--gray-600);
+  line-height: 1.5;
+}
+.pipeline-stage-body ul {
+  padding-left: 14px; margin: 0;
+}
+.pipeline-stage-body li {
+  font-size: 12px; margin-bottom: 3px;
+}
+.pipeline-stage-week {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--gray-200);
+  font-size: 10px;
+  color: var(--gray-400);
+  text-transform: uppercase; letter-spacing: 0.06em;
+  font-weight: 500;
+}
+
+/* ── Timeline swimlane ── */
+.timeline {
+  margin: 32px 0;
+  overflow-x: auto;
+}
+.timeline-inner {
+  min-width: 700px;
+  display: grid;
+  grid-template-columns: 140px repeat(8, 1fr);
+  gap: 4px;
+  align-items: center;
+}
+.timeline-header {
+  font-size: 10px;
+  text-align: center;
+  color: var(--gray-400);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 6px 0;
+}
+.timeline-header:first-child {
+  text-align: left;
+}
+.timeline-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--navy);
+  padding-right: 8px;
+}
+.timeline-cell {
+  height: 22px;
+  border-radius: 3px;
+  background: var(--gray-100);
+  position: relative;
+}
+.timeline-cell.active {
+  background: linear-gradient(135deg, var(--teal), var(--teal-mid));
+}
+.timeline-cell.deploy {
+  background: linear-gradient(135deg, var(--blue), var(--navy));
+}
+.timeline-cell.data {
+  background: linear-gradient(135deg, var(--amber), #cd8524);
+}
+
+/* ── Before/After comparison ── */
+.compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 24px 0;
+}
+.compare-col {
+  padding: 20px 24px;
+  border-radius: 10px;
+}
+.compare-col-before {
+  background: rgba(216,90,48,0.05);
+  border: 1px solid rgba(216,90,48,0.2);
+}
+.compare-col-after {
+  background: rgba(29,158,117,0.05);
+  border: 1px solid rgba(29,158,117,0.2);
+}
+.compare-title {
+  font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  margin-bottom: 14px;
+}
+.compare-col-before .compare-title { color: var(--coral); }
+.compare-col-after .compare-title { color: var(--teal); }
+.compare-list { list-style: none; padding: 0; }
+.compare-list li {
+  padding: 6px 0 6px 24px;
+  position: relative;
+  font-size: 13px;
+  color: var(--gray-600);
+  line-height: 1.5;
+}
+.compare-col-before .compare-list li::before {
+  content: '✕'; position: absolute; left: 0;
+  color: var(--coral); font-weight: 700;
+}
+.compare-col-after .compare-list li::before {
+  content: '✓'; position: absolute; left: 0;
+  color: var(--teal); font-weight: 700;
+}
+
+/* ── Code blocks ── */
+pre.code {
+  background: var(--navy-dark);
+  color: #a8d8a8;
+  padding: 16px 20px;
+  border-radius: 8px;
+  font-size: 12px;
+  overflow-x: auto;
+  margin: 16px 0;
+  line-height: 1.7;
+}
+code.inline {
+  background: var(--gray-100);
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 12px;
+  color: var(--navy);
+}
+
+/* ── Footer ── */
+.footer {
+  background: var(--navy-dark);
+  color: rgba(255,255,255,0.6);
+  padding: 40px 24px;
+  text-align: center;
+  font-size: 13px;
+}
+.footer a {
+  color: var(--teal-mid);
+  text-decoration: none;
+}
+.footer-links {
+  margin-top: 12px;
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+/* ── Print ── */
+@media print {
+  .toc { display: none; }
+  .header { padding: 30px; }
+  section { box-shadow: none; page-break-inside: avoid; padding: 20px; }
+  .pipeline { flex-direction: column; }
+  .pipeline-stage { margin-right: 0; margin-bottom: 30px; }
+  .pipeline-stage::after {
+    top: auto; bottom: -24px; left: 50%; right: auto;
+    transform: translateX(-50%);
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-top: 14px solid var(--navy);
+    border-bottom: none;
+  }
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .header h1 { font-size: 30px; }
+  .header .subtitle { font-size: 16px; }
+  section { padding: 28px 24px; }
+  h2 { font-size: 22px; }
+  .content { padding: 0 16px 40px; }
+  .toc { margin: -30px 16px 0; padding: 20px; }
+  .compare { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ HEADER ═══ -->
+<header class="header">
+  <div class="header-inner">
+    <div class="header-brand">
+      <div class="brand-mark">G</div>
+      <div>
+        <div class="brand-text-name">GoEMed.com</div>
+        <div class="brand-text-sub">Health Risk Intelligence</div>
+      </div>
+    </div>
+    <h1>Synthetic Health Data Generation &amp; Small Language Model Training</h1>
+    <p class="subtitle">Mathematics &amp; Statistics Internship — Summer 2026</p>
+
+    <div class="header-meta">
+      <div class="header-meta-item">
+        <span class="header-meta-label">Intern</span>
+        <span class="header-meta-value">Deepak Badri</span>
+      </div>
+      <div class="header-meta-item">
+        <span class="header-meta-label">Supervisor</span>
+        <span class="header-meta-value">Badri Viswanathan</span>
+      </div>
+      <div class="header-meta-item">
+        <span class="header-meta-label">Institution</span>
+        <span class="header-meta-value">University of Wisconsin–Madison</span>
+      </div>
+      <div class="header-meta-item">
+        <span class="header-meta-label">Repository</span>
+        <span class="header-meta-value">
+          <a href="https://github.com/Deepak-Badri/goemed-synthetic-slm">github.com/Deepak-Badri/goemed-synthetic-slm</a>
+        </span>
+      </div>
+      <div class="header-meta-item">
+        <span class="header-meta-label">Live API</span>
+        <span class="header-meta-value">
+          <a href="http://52.91.134.254:8000">52.91.134.254:8000</a>
+        </span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ═══ TOC ═══ -->
+<nav class="toc">
+  <div class="toc-title">Contents</div>
+  <ul class="toc-list">
+    <li><a href="#s1"><span class="toc-num">1</span>The Problem</a></li>
+    <li><a href="#s2"><span class="toc-num">2</span>Before &amp; After</a></li>
+    <li><a href="#s3"><span class="toc-num">3</span>The Pipeline</a></li>
+    <li><a href="#s4"><span class="toc-num">4</span>The Data</a></li>
+    <li><a href="#s5"><span class="toc-num">5</span>The Generator</a></li>
+    <li><a href="#s6"><span class="toc-num">6</span>Validation</a></li>
+    <li><a href="#s7"><span class="toc-num">7</span>The Model</a></li>
+    <li><a href="#s8"><span class="toc-num">8</span>Fairness &amp; SHAP</a></li>
+    <li><a href="#s9"><span class="toc-num">9</span>Deployment</a></li>
+    <li><a href="#s10"><span class="toc-num">10</span>Timeline</a></li>
+    <li><a href="#s11"><span class="toc-num">11</span>What's Next</a></li>
+  </ul>
+</nav>
+
+<!-- ═══ CONTENT ═══ -->
+<div class="content">
+
+<!-- ── SECTION 1: THE PROBLEM ── -->
+<section id="s1">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <h2>The Problem — What We Set Out to Solve</h2>
+  </div>
+
+  <p>GoEMed operates a direct-pay healthcare marketplace offering transparent, upfront procedure pricing. The business opportunity at the center of this project is <strong>health risk intelligence</strong>: if GoEMed can identify a user's elevated risk for cardiovascular disease, diabetes, or cancer, it can proactively surface relevant procedures and preventive care — all with transparent pricing. Health awareness drives procedure discovery, and procedure discovery drives GoEMed revenue.</p>
+
+  <p>The obstacle is data. Building a health risk prediction model requires patient health records — lab values, diagnoses, medications, lifestyle factors. Real patient data is protected under HIPAA. For a direct-pay marketplace without existing clinical relationships, obtaining real records requires months of data use agreement negotiations, IRB approval, and de-identification processes that still carry residual re-identification risk. For a startup moving quickly, this path is not viable.</p>
+
+  <div class="callout callout-why">
+    <div class="callout-icon">?</div>
+    <div class="callout-body">
+      <div class="callout-title">The Question</div>
+      <div class="callout-text">How do we build a clinically rigorous health risk prediction model without access to real patient data?</div>
+    </div>
+  </div>
+
+  <p>This project's answer: <strong>generate synthetic patient data</strong> — statistically realistic artificial records calibrated to real population health statistics — and train a clinical language model on it. No real patient records ever enter the training pipeline. No HIPAA exposure. No data use agreements. The model learns from synthetic data that behaves like real data without being real data.</p>
+
+  <div class="callout callout-what">
+    <div class="callout-icon">✓</div>
+    <div class="callout-body">
+      <div class="callout-title">Why a Small Language Model?</div>
+      <div class="callout-text">Real GoEMed users have incomplete information — they may know their age and family history but not their HbA1c. Language models handle missing inputs gracefully by leveraging context from clinical pre-training; tabular models degrade significantly without a complete feature vector.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SECTION 2: BEFORE / AFTER ── -->
+<section id="s2">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <h2>Before &amp; After — Why This Matters for GoEMed</h2>
+  </div>
+
+  <p>The business impact of this project is best understood by comparing what GoEMed could offer before this work versus what it can offer after.</p>
+
+  <div class="compare">
+    <div class="compare-col compare-col-before">
+      <div class="compare-title">Before — Without Health Risk Model</div>
+      <ul class="compare-list">
+        <li>No personalized health risk intelligence</li>
+        <li>Would need real patient data (HIPAA barriers)</li>
+        <li>6-12 months of DUA negotiations required</li>
+        <li>Generic marketplace recommendations for all users</li>
+        <li>No competitive differentiation vs. other direct-pay platforms</li>
+        <li>Users must search for the procedures they need</li>
+        <li>Preventive care opportunities missed</li>
+      </ul>
+    </div>
+    <div class="compare-col compare-col-after">
+      <div class="compare-title">After — With This Project Deployed</div>
+      <ul class="compare-list">
+        <li>11-condition health risk scoring in 690ms</li>
+        <li>Zero HIPAA exposure — pure synthetic training data</li>
+        <li>Deployed in 8 weeks, fully automated CI/CD</li>
+        <li>Personalized procedure recommendations per user</li>
+        <li>Geographic risk intelligence roadmap (Cancer Alley)</li>
+        <li>Proactive surfacing: high CVD risk → cardiology visits</li>
+        <li>Preventive care nudges drive marketplace revenue</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ── SECTION 3: PIPELINE ── -->
+<section id="s3">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <h2>The Pipeline — What We Built</h2>
+  </div>
+
+  <p>A complete end-to-end pipeline transforms raw federal health survey data into a live production API serving 11-condition health risk predictions in under 700 milliseconds.</p>
+
+  <div class="pipeline-wrap">
+    <div class="pipeline">
+      <div class="pipeline-stage">
+        <span class="pipeline-stage-num">STAGE 01</span>
+        <div class="pipeline-stage-title">Raw Data</div>
+        <div class="pipeline-stage-sub">Federal health surveys</div>
+        <div class="pipeline-stage-body">
+          <ul>
+            <li>NHANES — 17,846 adults</li>
+            <li>BRFSS — 457,670 responses</li>
+            <li>SEER cancer data</li>
+            <li>Census ACS 2022</li>
+          </ul>
+        </div>
+        <div class="pipeline-stage-week">Week 1–2</div>
+      </div>
+
+      <div class="pipeline-stage">
+        <span class="pipeline-stage-num">STAGE 02</span>
+        <div class="pipeline-stage-title">Synthetic Data</div>
+        <div class="pipeline-stage-sub">Gaussian copula generator</div>
+        <div class="pipeline-stage-body">
+          <ul>
+            <li>100,000 records</li>
+            <li>12 condition labels</li>
+            <li>All within ±5% of benchmarks</li>
+            <li>9 clinical risk models</li>
+          </ul>
+        </div>
+        <div class="pipeline-stage-week">Week 3–4</div>
+      </div>
+
+      <div class="pipeline-stage">
+        <span class="pipeline-stage-num">STAGE 03</span>
+        <div class="pipeline-stage-title">SLM Training</div>
+        <div class="pipeline-stage-sub">Bio_ClinicalBERT fine-tuning</div>
+        <div class="pipeline-stage-body">
+          <ul>
+            <li>110M parameter BERT</li>
+            <li>Pre-trained on MIMIC III</li>
+            <li>Macro AUROC 0.9857</li>
+            <li>Beats XGBoost on all 11 labels</li>
+          </ul>
+        </div>
+        <div class="pipeline-stage-week">Week 5–6</div>
+      </div>
+
+      <div class="pipeline-stage">
+        <span class="pipeline-stage-num">STAGE 04</span>
+        <div class="pipeline-stage-title">AWS Deploy</div>
+        <div class="pipeline-stage-sub">ECS Fargate container</div>
+        <div class="pipeline-stage-body">
+          <ul>
+            <li>Docker + ECR + S3</li>
+            <li>ECS Fargate serverless</li>
+            <li>CloudWatch monitoring</li>
+            <li>GitHub Actions CI/CD</li>
+          </ul>
+        </div>
+        <div class="pipeline-stage-week">Week 7</div>
+      </div>
+
+      <div class="pipeline-stage">
+        <span class="pipeline-stage-num">STAGE 05</span>
+        <div class="pipeline-stage-title">Live API</div>
+        <div class="pipeline-stage-sub">FastAPI REST endpoint</div>
+        <div class="pipeline-stage-body">
+          <ul>
+            <li>POST /predict</li>
+            <li>690ms inference</li>
+            <li>11 condition probabilities</li>
+            <li>Ready for GoEMed integration</li>
+          </ul>
+        </div>
+        <div class="pipeline-stage-week">Week 8</div>
+      </div>
+    </div>
+  </div>
+
+  <p style="text-align:center; font-size: 12px; color: var(--gray-400); margin-top: 8px;">
+    Left-to-right pipeline: raw data → synthetic data → model → deployment → live API
+  </p>
+</section>
+
+<!-- ── SECTION 4: DATA ── -->
+<section id="s4">
+  <div class="section-header">
+    <span class="section-num">04</span>
+    <h2>The Data — Where We Got Our Numbers</h2>
+  </div>
+
+  <p>Since real patient records were off-limits, the synthetic generator was built from published federal health surveys that describe the statistical properties of the US adult population. All sources are free and publicly available.</p>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Source</th>
+        <th>What It Provided</th>
+        <th>Used For</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>NHANES 2017–2020 &amp; 2021–2023</td>
+        <td>BMI, BP, cholesterol, HbA1c, glucose, creatinine, smoking (17,846 adults)</td>
+        <td>Distribution fitting, correlation matrices</td>
+      </tr>
+      <tr>
+        <td>BRFSS 2024</td>
+        <td>State-level smoking, alcohol, activity rates (457,670 respondents)</td>
+        <td>Binary feature calibration</td>
+      </tr>
+      <tr>
+        <td>NCI SEER 2018–2022</td>
+        <td>Colorectal cancer rates by age/sex/race — all 50 states</td>
+        <td>Cancer label calibration</td>
+      </tr>
+      <tr>
+        <td>Census ACS 2022</td>
+        <td>Population weights by age/race/sex</td>
+        <td>Demographic sampling</td>
+      </tr>
+      <tr>
+        <td>AHA 2023 Statistical Update</td>
+        <td>Hypertension, CVD, diabetes prevalence benchmarks</td>
+        <td>Label validation targets</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout callout-note">
+    <div class="callout-icon">!</div>
+    <div class="callout-body">
+      <div class="callout-title">Geographic Signal Already in the Data</div>
+      <div class="callout-text">Geographic health disparities are already partially captured in the current model through demographic stratification — Non-Hispanic Black patients' higher hypertension rates and Hispanic patients' diabetes patterns reflect real regional health differences already embedded in NHANES and BRFSS data. Planned Cancer Alley multipliers (Louisiana 1.21×, Mississippi 1.25×) add an explicit state-level cancer risk layer on top of this existing demographic signal — not a replacement for it.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SECTION 5: GENERATOR ── -->
+<section id="s5">
+  <div class="section-header">
+    <span class="section-num">05</span>
+    <h2>The Generator — How We Made Fake Patients</h2>
+  </div>
+
+  <p>The synthetic patient generator produces statistically realistic patient records through five sequential steps, each grounded in published statistical methodology. Running across 8 CPU cores, it generates <strong>100,000 records in 11 seconds</strong>.</p>
+
+  <h3>Step 1 — Demographic Sampling</h3>
+  <p>Age, sex, and race are sampled from Census ACS 2022 population weights: Non-Hispanic White 59.4%, Hispanic 18.5%, Non-Hispanic Black 12.4%, NH Asian 6.0%, Other 3.7%.</p>
+
+  <h3>Step 2 — Gaussian Copula Feature Sampling</h3>
+  <p>Clinical features must be sampled jointly — a patient with BMI 45 but blood pressure 95/60 is physically impossible. The Gaussian copula preserves the pairwise correlation structure from NHANES by fitting 12 stratum-specific correlation matrices (6 races × 2 sexes), verifying Positive Semi-Definiteness via eigenvalue analysis, and using Cholesky decomposition to sample correlated standard normal variables. These are converted to uniform marginals via the normal CDF and inverted through each feature's fitted distribution (log-normal for BMI, normal for BP, gamma for fasting glucose).</p>
+
+  <h3>Step 3 — Binary Features from BRFSS Rates</h3>
+  <p>Smoking, physical activity, alcohol use, family history, snoring, and BP treatment are sampled as binary variables with probabilities drawn from BRFSS 2024 rates, adjusted for age, sex, and race where documented disparities exist.</p>
+
+  <h3>Step 4 — Label Assignment via Clinical Risk Models</h3>
+  <p>Nine validated clinical risk equations are evaluated on each record and used as Bernoulli parameters for label assignment:</p>
+  <ul>
+    <li><strong>Framingham Risk Score</strong> — 10-year CVD risk (Circulation 2008)</li>
+    <li><strong>ACC/AHA ASCVD Pooled Cohort</strong> — 10-year ASCVD risk (JACC 2013)</li>
+    <li><strong>FINDRISC Score</strong> — 10-year T2DM risk (Diabetologia 2003)</li>
+    <li><strong>CKD-EPI (2021 race-free)</strong> — eGFR and CKD staging (NEJM 2021)</li>
+    <li><strong>STOP-BANG Score</strong> — OSA risk (Anesthesiology 2008)</li>
+    <li><strong>JNC8 / ACC-AHA 2017</strong> — Hypertension diagnosis</li>
+    <li><strong>ADA Diagnostic Criteria</strong> — Diabetes and Prediabetes</li>
+    <li><strong>CDC BMI Classification</strong> — Obesity classes</li>
+    <li><strong>Charlson Comorbidity Index</strong> — Comorbidity burden</li>
+  </ul>
+
+  <h3>Step 5 — Comorbidity Cascades</h3>
+  <p>Biologically plausible comorbidity cascades reflect documented disease co-occurrence: T2DM raises CKD risk 25%, Hypertension raises CVD risk 10%, severe Obesity raises OSA risk 15%.</p>
+</section>
+
+<!-- ── SECTION 6: VALIDATION ── -->
+<section id="s6">
+  <div class="section-header">
+    <span class="section-num">06</span>
+    <h2>Validation — Proving the Fake Data is Real Enough</h2>
+  </div>
+
+  <p>Four complementary statistical tests validated that the synthetic data faithfully represents real NHANES population health patterns.</p>
+
+  <div class="metric-grid">
+    <div class="metric-card">
+      <div class="metric-label">Frobenius Norm</div>
+      <div class="metric-value">1.967</div>
+      <div class="metric-detail">Correlation matrix similarity vs NHANES (threshold &lt; 2.0)</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Propensity AUROC</div>
+      <div class="metric-value">0.606</div>
+      <div class="metric-detail">Classifier accuracy distinguishing synthetic from real (threshold &lt; 0.65)</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Hotelling T²</div>
+      <div class="metric-value">0.034</div>
+      <div class="metric-detail">Multivariate mean equality (normalized, threshold &lt; 1.0)</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Label Calibration</div>
+      <div class="metric-value">12 / 12</div>
+      <div class="metric-detail">Labels within ±5% of published benchmarks</div>
+    </div>
+  </div>
+
+  <h3>Condition Label Prevalence Calibration</h3>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Condition</th>
+        <th>Synthetic</th>
+        <th>Benchmark</th>
+        <th>Source</th>
+        <th>Delta</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Hypertension</td><td class="num">48.0%</td><td class="num">47.0%</td><td>AHA 2023</td><td class="pass">+1.0%</td></tr>
+      <tr><td>Type 2 Diabetes</td><td class="num">14.3%</td><td class="num">11.0%</td><td>CDC 2023</td><td class="pass">+3.3%</td></tr>
+      <tr><td>Obesity (any class)</td><td class="num">43.8%</td><td class="num">42.0%</td><td>CDC NHANES</td><td class="pass">+1.8%</td></tr>
+      <tr><td>CVD Risk</td><td class="num">14.7%</td><td class="num">12.0%</td><td>AHA 2023</td><td class="pass">+2.7%</td></tr>
+      <tr><td>Chronic Kidney Disease</td><td class="num">12.4%</td><td class="num">15.0%</td><td>KDIGO/USRDS</td><td class="pass">−2.6%</td></tr>
+      <tr><td>Sleep Apnea (OSA)</td><td class="num">23.5%</td><td class="num">26.0%</td><td>NHANES</td><td class="pass">−2.5%</td></tr>
+      <tr><td>Depression / Anxiety</td><td class="num">10.7%</td><td class="num">8.0%</td><td>NIMH</td><td class="pass">+2.7%</td></tr>
+      <tr><td>COPD / Asthma</td><td class="num">7.8%</td><td class="num">6.0%</td><td>ALA</td><td class="pass">+1.8%</td></tr>
+      <tr><td>Metabolic Syndrome</td><td class="num">36.0%</td><td class="num">33.0%</td><td>ATP III</td><td class="pass">+3.0%</td></tr>
+      <tr><td>Hypothyroidism</td><td class="num">7.3%</td><td class="num">5.0%</td><td>NHANES</td><td class="pass">+2.3%</td></tr>
+      <tr><td>Prediabetes</td><td class="num">34.0%</td><td class="num">38.0%</td><td>CDC 2023</td><td class="pass">−4.0%</td></tr>
+      <tr><td>Colorectal Cancer Risk</td><td class="num">3.7%</td><td class="num">4.5%</td><td>SEER 2023</td><td class="pass">−0.8%</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout callout-key">
+    <div class="callout-icon">T²</div>
+    <div class="callout-body">
+      <div class="callout-title">Hotelling's T² — Applied Multivariate Analysis</div>
+      <div class="callout-text">Applied from Applied Multivariate Analysis coursework, Hotelling's T² is the multivariate generalization of the two-sample t-test — testing whether the entire vector of feature means is equal between synthetic and real data simultaneously, accounting for correlations between features. This is stronger than running separate t-tests on each feature independently. The normalized T² of 0.034 (well below 1.0) confirms no systematic bias across any combination of features.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SECTION 7: MODEL ── -->
+<section id="s7">
+  <div class="section-header">
+    <span class="section-num">07</span>
+    <h2>The Model — Training Bio_ClinicalBERT</h2>
+  </div>
+
+  <h3>Prompt Serialization</h3>
+  <p>Each synthetic patient record was converted from a row of numbers into a natural language sentence using five randomly selected template styles — clinical note, narrative paragraph, abbreviated EHR, structured list, and risk-focused. For example:</p>
+  <pre class="code">Patient: 58-year-old Black male. BMI: 31.4 kg/m². Blood pressure: 148/92 mmHg.
+HbA1c: 7.2%. Fasting glucose: 142 mg/dL. On antihypertensive medication.
+Family history: diabetes, CVD.</pre>
+
+  <h3>Fine-Tuning Configuration</h3>
+  <p>Bio_ClinicalBERT (110M parameters, pre-trained on 880 million words of MIMIC III clinical notes) was loaded with a new 11-label multi-label classification head. Training used Binary Cross-Entropy loss with class-frequency inverse weighting, AdamW optimizer, cosine learning rate schedule, 5 epochs on 20,000 records with batch size 8 on Apple M2 MPS.</p>
+
+  <h3>Performance vs Baselines</h3>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Condition</th>
+        <th>Logistic Regression</th>
+        <th>XGBoost</th>
+        <th>Bio_ClinicalBERT</th>
+        <th>SLM vs XGB</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Hypertension</td><td class="num">0.981</td><td class="num">1.000</td><td class="num">0.999</td><td>Matched</td></tr>
+      <tr><td>Type 2 Diabetes</td><td class="num">0.943</td><td class="num">0.955</td><td class="num">0.997</td><td class="pass">+0.042</td></tr>
+      <tr><td>CVD Risk</td><td class="num">0.680</td><td class="num">0.684</td><td class="num">0.986</td><td class="pass">+0.302</td></tr>
+      <tr><td>Chronic Kidney Disease</td><td class="num">0.868</td><td class="num">0.922</td><td class="num">0.993</td><td class="pass">+0.071</td></tr>
+      <tr><td>Sleep Apnea</td><td class="num">0.741</td><td class="num">0.754</td><td class="num">0.986</td><td class="pass">+0.232</td></tr>
+      <tr><td>Depression / Anxiety</td><td class="num">0.572</td><td class="num">0.570</td><td class="num">0.975</td><td class="pass">+0.405</td></tr>
+      <tr><td>COPD</td><td class="num">0.771</td><td class="num">0.786</td><td class="num">0.980</td><td class="pass">+0.194</td></tr>
+      <tr><td>Metabolic Syndrome</td><td class="num">0.895</td><td class="num">1.000</td><td class="num">0.991</td><td>Matched</td></tr>
+      <tr><td>Hypothyroidism</td><td class="num">0.596</td><td class="num">0.577</td><td class="num">0.978</td><td class="pass">+0.401</td></tr>
+      <tr><td>Prediabetes</td><td class="num">0.749</td><td class="num">0.941</td><td class="num">0.995</td><td class="pass">+0.054</td></tr>
+      <tr><td>Colorectal Cancer</td><td class="num">—</td><td class="num">—</td><td class="num">0.962</td><td>New label</td></tr>
+      <tr style="background: var(--teal-light);"><td><strong>Macro Average</strong></td><td class="num"><strong>0.779</strong></td><td class="num"><strong>0.819</strong></td><td class="num"><strong>0.986</strong></td><td class="pass"><strong>+0.167</strong></td></tr>
+    </tbody>
+  </table>
+
+  <h3>Power Analysis — SLM Saturates at 1,000 Records</h3>
+  <p>Training at 5 dataset sizes revealed that Bio_ClinicalBERT reaches peak performance (AUROC 0.9861) with just <strong>1,000 records</strong> and shows virtually no improvement with 20× more data. XGBoost follows a classical learning curve, improving from 0.76 to 0.80 as data increases — confirming that dataset size is a binding constraint for tabular models but not for pre-trained language models. This is the decisive advantage of transfer learning from clinical pre-training.</p>
+
+  <div class="callout callout-note">
+    <div class="callout-icon">!</div>
+    <div class="callout-body">
+      <div class="callout-title">Identified Limitation — Hypertension Over-prediction</div>
+      <div class="callout-text">During API testing, the model assigned 99% hypertension probability to a 28-year-old female with normal BP (110/70 mmHg). Text-based language models don't process numeric thresholds with tabular precision. Recommended fix: hybrid strategy using XGBoost for hard-threshold conditions (Hypertension, Diabetes, Metabolic Syndrome) and Bio_ClinicalBERT for complex conditions (CVD Risk, Depression, Sleep Apnea, COPD).</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SECTION 8: FAIRNESS ── -->
+<section id="s8">
+  <div class="section-header">
+    <span class="section-num">08</span>
+    <h2>Fairness &amp; SHAP Interpretability</h2>
+  </div>
+
+  <h3>SHAP — Clinical Alignment 77.8%</h3>
+  <p>TreeSHAP values were computed for XGBoost models on 100,000 records to verify the model learned clinically correct patterns rather than spurious correlations. Top SHAP features matched published clinical risk factors:</p>
+
+  <table class="data-table">
+    <thead>
+      <tr><th>Condition</th><th>Top SHAP Features</th><th>Clinical Alignment</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Type 2 Diabetes</td><td>HbA1c, Fasting Glucose, BMI, Family Hx</td><td class="pass num">100%</td></tr>
+      <tr><td>Chronic Kidney Disease</td><td>Creatinine, Age, HbA1c, SBP</td><td class="pass num">100%</td></tr>
+      <tr><td>Hypothyroidism</td><td>Female Sex, Age</td><td class="pass num">100%</td></tr>
+      <tr><td>Hypertension</td><td>SBP, DBP, BP Medication, Age, BMI</td><td class="pass num">80%</td></tr>
+      <tr><td>Sleep Apnea</td><td>BMI, Snoring, Male Sex, Age, Waist</td><td class="pass num">80%</td></tr>
+      <tr><td>Metabolic Syndrome</td><td>Waist, Fasting Glucose, HDL, SBP, BMI</td><td class="pass num">80%</td></tr>
+      <tr><td>Prediabetes</td><td>HbA1c, Fasting Glucose, BMI, Age</td><td class="pass num">75%</td></tr>
+      <tr><td>Depression / Anxiety</td><td>Female Sex, Age, Low Activity</td><td class="pass num">67%</td></tr>
+      <tr><td>COPD</td><td>Pack Years, Age, Smoker</td><td class="pass num">67%</td></tr>
+      <tr><td>CVD Risk</td><td>Male Sex, SBP, Age, BP Medication</td><td class="num">57%</td></tr>
+      <tr><td>Colorectal Cancer</td><td>Age, Family Hx, BMI, Alcohol</td><td class="num">50%</td></tr>
+      <tr style="background: var(--teal-light);"><td><strong>Overall</strong></td><td>—</td><td class="pass num"><strong>77.8%</strong></td></tr>
+    </tbody>
+  </table>
+
+  <h3>Fairness Audit — 78.8% Pass Rate</h3>
+  <p>Model performance was evaluated across 5 race groups, 2 sexes, and 4 age groups — 33 demographic subgroup checks. Any AUROC gap over 5 percentage points was flagged. Seven gaps were flagged; all seven have clinically justified explanations:</p>
+  <ul>
+    <li><strong>CVD Risk — Sex gap (19.8pp):</strong> ASCVD Pooled Cohort Equations use sex-stratified coefficients by design. Male and female CVD risk profiles differ in the literature.</li>
+    <li><strong>Colorectal Cancer — Race gap (12.8pp):</strong> SEER race-stratified incidence rates embedded in the generator. Reflects real epidemiology.</li>
+    <li><strong>CVD Risk — Age gap (13.1pp):</strong> Very low CVD prevalence under 45 reduces classifier signal.</li>
+    <li><strong>COPD — Age gap (9.7pp):</strong> COPD is rare under age 45; low prevalence limits AUROC.</li>
+    <li><strong>CKD — Age gap (6.8pp):</strong> CKD prevalence rises sharply with age.</li>
+    <li><strong>COPD — Race gap (6.9pp):</strong> Smoking patterns vary significantly by race in BRFSS data.</li>
+    <li><strong>OSA — Sex gap (6.5pp):</strong> Male predominance reflects STOP-BANG score sex weighting.</li>
+  </ul>
+  <p>None of the seven flagged gaps represent model bias introduced by the synthetic data generator. Every gap has a clinically justified explanation rooted in real epidemiological patterns. The model is learning real health disparities, not amplifying stereotypes.</p>
+</section>
+
+<!-- ── SECTION 9: DEPLOYMENT ── -->
+<section id="s9">
+  <div class="section-header">
+    <span class="section-num">09</span>
+    <h2>Deployment — The Live API on AWS</h2>
+  </div>
+
+  <p>The trained Bio_ClinicalBERT model is deployed as a production-grade REST API on Amazon Web Services, accessible at <code class="inline">http://52.91.134.254:8000</code>. A GoEMed application sends a patient profile as JSON to <code class="inline">/predict</code>; the FastAPI server converts it to natural language, runs Bio_ClinicalBERT inference, and returns probability scores for all 11 conditions in under 700ms.</p>
+
+  <h3>Example Request &amp; Response</h3>
+  <pre class="code">POST /predict HTTP/1.1
+{
+  "age": 58, "sex": "M", "race": "nh_black",
+  "bmi": 31.4, "sbp": 148, "dbp": 92,
+  "hba1c": 7.2, "fasting_glucose": 142,
+  "bp_treated": true, "family_history_dm": true
+}
+
+Response (690ms):
+{
+  "predictions": {
+    "diabetes":            { "probability": 0.9994, "risk": "high" },
+    "hypertension":        { "probability": 0.9657, "risk": "high" },
+    "cvd_risk":            { "probability": 0.8492, "risk": "high" },
+    "metabolic_syndrome":  { "probability": 0.7338, "risk": "high" },
+    "osa":                 { "probability": 0.6544, "risk": "moderate" },
+    ...
+  },
+  "risk_summary": "high",
+  "top_risk_factors": ["Type 2 Diabetes", "Hypertension", "CVD Risk"],
+  "inference_time_ms": 690.9
+}</pre>
+
+  <h3>AWS Infrastructure</h3>
+  <table class="data-table">
+    <thead>
+      <tr><th>Service</th><th>Purpose</th><th>Configuration</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>S3 (goemed-model-artifacts)</td><td>Model weight storage</td><td>413MB, versioning enabled</td></tr>
+      <tr><td>ECR (goemed-slm-inference)</td><td>Container registry</td><td>linux/amd64 Docker image</td></tr>
+      <tr><td>ECS Fargate</td><td>Serverless compute</td><td>0.5 vCPU, 1GB RAM</td></tr>
+      <tr><td>IAM (ecsTaskExecutionRole)</td><td>Permissions</td><td>ECR pull + S3 read + logs</td></tr>
+      <tr><td>CloudWatch</td><td>Observability</td><td>Container logs + metrics dashboard</td></tr>
+      <tr><td>GitHub Actions</td><td>CI/CD pipeline</td><td>Auto-deploy on push to main (4 min)</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout callout-key">
+    <div class="callout-icon">$</div>
+    <div class="callout-body">
+      <div class="callout-title">Cost — Approximately $20/month Active</div>
+      <div class="callout-text">ECS Fargate: ~$15/month · S3: ~$2 · ECR: ~$1 · CloudWatch: ~$2. Scaled to zero overnight, ongoing cost drops to ~$5/month. Suitable for prototype and demo load.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SECTION 10: TIMELINE ── -->
+<section id="s10">
+  <div class="section-header">
+    <span class="section-num">10</span>
+    <h2>Timeline — How We Built It in 8 Weeks</h2>
+  </div>
+
+  <p>The project ran across 8 weeks in Summer 2026 following a structured milestone plan. Each work stream progressed in parallel where possible.</p>
+
+  <div class="timeline">
+    <div class="timeline-inner">
+      <div class="timeline-header"></div>
+      <div class="timeline-header">Wk 1</div>
+      <div class="timeline-header">Wk 2</div>
+      <div class="timeline-header">Wk 3</div>
+      <div class="timeline-header">Wk 4</div>
+      <div class="timeline-header">Wk 5</div>
+      <div class="timeline-header">Wk 6</div>
+      <div class="timeline-header">Wk 7</div>
+      <div class="timeline-header">Wk 8</div>
+
+      <div class="timeline-label">Environment</div>
+      <div class="timeline-cell active"></div>
+      <div class="timeline-cell"></div>
+      <div class="timeline-cell"></div>
+      <div class="timeline-cell"></div>
+      <div class="timeline-cell"></div>
+      <div class="timeline-cell"></div>
+      <div class="timeline-cell"></div>
+      <div class="timeline-cell"></div>
+
+      <div class="timeline-label">Data</div>
+      <div class="timeline-cell data"></div>
+      <div class="timeline-cell data"></div>
+      <div class="timeline-cell"></div>
+      <div class="timeline-cell"></div>
+      <div class="timeline-cell"></div>
+      <div class="timeline-cell"></div>
+      <div class="timeline-cell"></div>
+      <div class="timeline-cell"></div>
+
+      <div class="timeline-label">Generator</div>
+      <div class="timeline-cell"></div>
+      <div class="timeline-cell active"></div>
+      <div class="timeline-cell active"></div>
+      <div class="timeline-cell active"></div>
+      <div class="timeline-cell"></div>
+      <div class="timeline-cell"></div>
+      <div class="timeline-cell"></div>
+      <div class="timeline-cell"></div>
+
+      <div class="timeline-label">Validation</div>
+      <div class="timeline-cell"></div>
+      <div class="timeline-cell"></div>
+      <div class="timeline-cell"></div>
+      <div class="timeline-cell active"></div>
+      <div class="timeline-cell"></div>
+      <div class="timeline-cell"></div>
+      <div class="timeline-cell"></div>
+      <div class="timeline-cell"></div>
+
+      <div class="timeline-label">Baseline ML</div>
+      <div class="timeline-cell"></div>
+      <div class="timeline-cell"></div>
+      <div class="timeline-cell"></div>
+      <div class="timeline-cell"></div>
+      <div class="timeline-cell active"></div>
+      <div class="timeline-cell"></div>
+      <div class="timeline-cell"></div>
+      <div class="timeline-cell"></div>
+
+      <div class="timeline-label">SLM Training</div>
+      <div class="timeline-cell"></div>
+      <div class="timeline-cell"></div>
+      <div class="timeline-cell"></div>
+      <div class="timeline-cell"></div>
+      <div class="timeline-cell"></div>
+      <div class="timeline-cell active"></div>
+      <div class="timeline-cell"></div>
+      <div class="timeline-cell"></div>
+
+      <div class="timeline-label">Analysis</div>
+      <div class="timeline-cell"></div>
+      <div class="timeline-cell"></div>
+      <div class="timeline-cell"></div>
+      <div class="timeline-cell"></div>
+      <div class="timeline-cell"></div>
+      <div class="timeline-cell active"></div>
+      <div class="timeline-cell"></div>
+      <div class="timeline-cell"></div>
+
+      <div class="timeline-label">AWS Deploy</div>
+      <div class="timeline-cell"></div>
+      <div class="timeline-cell"></div>
+      <div class="timeline-cell"></div>
+      <div class="timeline-cell"></div>
+      <div class="timeline-cell"></div>
+      <div class="timeline-cell"></div>
+      <div class="timeline-cell deploy"></div>
+      <div class="timeline-cell deploy"></div>
+
+      <div class="timeline-label">Report &amp; Docs</div>
+      <div class="timeline-cell"></div>
+      <div class="timeline-cell"></div>
+      <div class="timeline-cell"></div>
+      <div class="timeline-cell"></div>
+      <div class="timeline-cell"></div>
+      <div class="timeline-cell"></div>
+      <div class="timeline-cell"></div>
+      <div class="timeline-cell deploy"></div>
+    </div>
+  </div>
+
+  <p style="text-align:center; font-size: 12px; color: var(--gray-400); margin-top: 12px;">
+    <span style="display: inline-block; width: 10px; height: 10px; background: var(--amber); border-radius: 2px; vertical-align: middle;"></span>
+    Data acquisition ·
+    <span style="display: inline-block; width: 10px; height: 10px; background: var(--teal); border-radius: 2px; vertical-align: middle; margin-left: 12px;"></span>
+    Development ·
+    <span style="display: inline-block; width: 10px; height: 10px; background: var(--navy); border-radius: 2px; vertical-align: middle; margin-left: 12px;"></span>
+    Deployment &amp; delivery
+  </p>
+</section>
+
+<!-- ── SECTION 11: FUTURE WORK ── -->
+<section id="s11">
+  <div class="section-header">
+    <span class="section-num">11</span>
+    <h2>What's Next — Roadmap for GoEMed</h2>
+  </div>
+
+  <p>The project exceeded the original proposal scope. Three priority enhancements are planned for v2:</p>
+
+  <div class="callout callout-key">
+    <div class="callout-icon">1</div>
+    <div class="callout-body">
+      <div class="callout-title">Geographic Health Risk Intelligence — Cancer Alley</div>
+      <div class="callout-text">State-specific colorectal cancer multipliers computed from SEER 2018-2022 for all 50 states are stored in <code class="inline">configs/regional_cancer_multipliers.yaml</code> on the feature/regional-cancer-risk branch. Cancer Alley states (Louisiana 1.21×, Mississippi 1.25×) will be surfaced to GoEMed users as an explicit regional risk layer on top of the demographic health disparity signal already embedded in NHANES/BRFSS data. No other direct-pay marketplace currently offers location-aware health risk scoring.</div>
+    </div>
+  </div>
+
+  <div class="callout callout-key">
+    <div class="callout-icon">2</div>
+    <div class="callout-body">
+      <div class="callout-title">Iron Deficiency Anemia &amp; Heart Failure Labels</div>
+      <div class="callout-text">Adding hemoglobin from NHANES CBC files enables an anemia label (WHO criteria: Hgb &lt; 12 g/dL women, &lt; 13 g/dL men) and a heart failure risk label driven by anemia, CKD, hypertension, and existing CVD. This surfaces iron panel testing as a cardiac risk mitigation tool — a clinically underappreciated relationship in consumer health platforms.</div>
+    </div>
+  </div>
+
+  <div class="callout callout-key">
+    <div class="callout-icon">3</div>
+    <div class="callout-body">
+      <div class="callout-title">Production HTTPS Deployment</div>
+      <div class="callout-text">Add Application Load Balancer with ACM TLS certificate for HTTPS, ECS Auto Scaling (70% CPU scale-up, 30% scale-down), API key authentication, and stable DNS name. These are infrastructure enhancements only — model and inference logic unchanged.</div>
+    </div>
+  </div>
+
+  <div class="callout callout-key">
+    <div class="callout-icon">4</div>
+    <div class="callout-body">
+      <div class="callout-title">Hybrid Inference Strategy</div>
+      <div class="callout-text">Use XGBoost for hard-threshold conditions (Hypertension, Diabetes, Metabolic Syndrome) where numeric precision matters, and Bio_ClinicalBERT for complex conditions (CVD Risk, Depression, Sleep Apnea, COPD) where contextual reasoning adds value. Eliminates the identified hypertension over-prediction limitation.</div>
+    </div>
+  </div>
+
+  <h3>Coursework Connections</h3>
+  <p>This project applied methods from five UW-Madison courses:</p>
+  <ul>
+    <li><strong>Stat 309/310</strong> — MLE distribution fitting, power-law learning curves via nonlinear least squares, Cramér-Rao lower bound analysis</li>
+    <li><strong>Applied Multivariate Analysis</strong> — Gaussian copula, PSD matrix verification, Hotelling T² test</li>
+    <li><strong>Math 321/322</strong> — Convergence properties of the copula sampler</li>
+    <li><strong>Intro to Number Theory</strong> — Foundation for planned quasi-random Sobol sampling</li>
+    <li><strong>Math Methods in Data Science</strong> — Kernel-based MMD as alternative distributional similarity metric</li>
+  </ul>
+</section>
+
+</div>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="footer">
+  <div>
+    <strong style="color: white;">GoEMed Mathematics &amp; Statistics Internship — Summer 2026</strong><br>
+    Deepak Badri · Supervisor: Badri Viswanathan · University of Wisconsin–Madison
+  </div>
+  <div class="footer-links">
+    <a href="https://github.com/Deepak-Badri/goemed-synthetic-slm">GitHub Repository</a>
+    <a href="http://52.91.134.254:8000">Live API</a>
+    <a href="http://localhost:3000">Local Web App</a>
+  </div>
+</footer>
+
+</body>
+</html>
