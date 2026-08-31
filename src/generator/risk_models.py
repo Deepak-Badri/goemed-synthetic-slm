@@ -8,7 +8,7 @@ or score that drives label assignment in the synthetic data generator.
 Sources:
     - Framingham Risk Score: JAMA 2001, Circulation 2008
     - ACC/AHA ASCVD: JACC 2013 (Goff et al.)
-    - FINDRISC: Diabetologia 2003 (Lindström & Tuomilehto)
+    - FINDRISC: Diabetes Care 2003;26:725-731 (Lindström & Tuomilehto)
     - FRAX: WHO/NOGG 2008 (Kanis et al.)
     - STOP-BANG: Anesthesiology 2008 (Chung et al.)
     - CKD-EPI: AJKD 2009 (Levey et al.) — 2021 race-free update
@@ -22,7 +22,26 @@ from typing import Dict, Any
 
 # ── Type alias ─────────────────────────────────────────────────────────────
 Patient = Dict[str, Any]
-
+# ══════════════════════════════════════════════════════════════════════════
+# OUT-OF-RANGE POLICY
+# ══════════════════════════════════════════════════════════════════════════
+# All risk equations are validated only within specific patient populations
+# (e.g. ASCVD 40-79 years old, Framingham 30-79). This module silently CLAMPS
+# out-of-range inputs to the nearest valid boundary. This is a design choice
+# for the synthetic data pipeline where age ranges are always in-scope.
+#
+# For any use outside this project, callers should either:
+#   (a) Pre-filter their patients to the validated range, or
+#   (b) Modify _clamp() to raise ValueError on out-of-range inputs
+#
+# Silent clamping is inappropriate for real clinical decision support.
+# Validated ranges per equation:
+#   Framingham 2008:  age 30-79
+#   ASCVD 2013:       age 40-79
+#   CKD-EPI 2021:     age 18-110
+#   FINDRISC:         age 45+ recommended
+#   STOP-BANG:        adult only
+# ══════════════════════════════════════════════════════════════════════════
 
 # ══════════════════════════════════════════════════════════════════════════
 # UTILITY FUNCTIONS
@@ -68,8 +87,8 @@ _FRAMINGHAM_COEFFS = {
         "log_age":           2.32888,
         "log_tc":            1.20904,
         "log_hdl":          -0.70833,
-        "log_sbp_treated":   2.76157,
-        "log_sbp_untreated": 2.82263,
+        "log_sbp_treated":   2.82263,
+        "log_sbp_untreated": 2.76157,
         "smoker":            0.52873,
         "diabetes":          0.69154,
         "baseline_survival": 0.95012,
@@ -125,16 +144,19 @@ _ASCVD_COEFFS = {
         "ln_age_sbp_trt":   0.0,    "ln_sbp_untrt":   1.764,
         "ln_age_sbp_untrt": 0.0,    "smoker":         7.837,
         "ln_age_smoker":   -1.795,  "diabetes":       0.661,
+        "ln_age_sq":        0.0,    # added for shared code path
         "baseline":         0.9144, "mean_sum":      61.18,
     },
     ("white", "F"): {
-        "ln_age":          -7.574,  "ln_tc":          4.185,
-        "ln_age_ln_tc":     0.661,  "ln_hdl":         0.0,
-        "ln_age_ln_hdl":   -0.0,    "ln_sbp_trt":     2.019,
+        # ALL coefficients corrected against Goff et al. 2013 Table A
+        "ln_age":         -29.799,  "ln_tc":         13.540,
+        "ln_age_ln_tc":    -3.114,  "ln_hdl":       -13.578,
+        "ln_age_ln_hdl":    3.149,  "ln_sbp_trt":     2.019,
         "ln_age_sbp_trt":   0.0,    "ln_sbp_untrt":   1.957,
         "ln_age_sbp_untrt": 0.0,    "smoker":         7.574,
         "ln_age_smoker":   -1.665,  "diabetes":       0.661,
-        "baseline":         0.9665, "mean_sum":      -29.799,
+        "ln_age_sq":        4.884,  # added (published equation)
+        "baseline":         0.9665, "mean_sum":     -29.18,
     },
     ("black", "M"): {
         "ln_age":           2.469,  "ln_tc":          0.302,
@@ -143,15 +165,17 @@ _ASCVD_COEFFS = {
         "ln_age_sbp_trt":   0.0,    "ln_sbp_untrt":   1.809,
         "ln_age_sbp_untrt": 0.0,    "smoker":         0.549,
         "ln_age_smoker":    0.0,    "diabetes":       0.645,
+        "ln_age_sq":        0.0,    # added for shared code path
         "baseline":         0.8954, "mean_sum":      19.54,
     },
     ("black", "F"): {
         "ln_age":          17.1141, "ln_tc":          0.9396,
-        "ln_age_ln_tc":     0.0,    "ln_hdl":        -18.920,
+        "ln_age_ln_tc":     0.0,    "ln_hdl":       -18.920,
         "ln_age_ln_hdl":    4.475,  "ln_sbp_trt":    29.291,
         "ln_age_sbp_trt":  -6.432,  "ln_sbp_untrt":  27.819,
         "ln_age_sbp_untrt":-6.087,  "smoker":         0.873,
         "ln_age_smoker":    0.0,    "diabetes":       0.874,
+        "ln_age_sq":        0.0,    # added for shared code path
         "baseline":         0.9533, "mean_sum":      86.61,
     },
 }
@@ -187,6 +211,7 @@ def ascvd_risk(p: Patient) -> float:
 
     score = (
         c["ln_age"]            * la
+      + c["ln_age_sq"]         * la * la
       + c["ln_tc"]             * ltc
       + c["ln_age_ln_tc"]      * la * ltc
       + c["ln_hdl"]            * lhdl
@@ -254,18 +279,14 @@ def findrisc_t2dm_risk(p: Patient) -> float:
     if fam:         score += 5
     elif fam2:      score += 3
 
-    # Convert score to approximate 10-yr probability
-    # Based on published FINDRISC risk tables
-    score_to_prob = {
-        0: 0.01, 1: 0.01, 2: 0.01, 3: 0.01, 4: 0.01,
-        5: 0.02, 6: 0.02, 7: 0.03, 8: 0.04, 9: 0.06,
-        10: 0.06, 11: 0.09, 12: 0.09, 13: 0.09, 14: 0.17,
-        15: 0.17, 16: 0.17, 17: 0.33, 18: 0.33, 19: 0.33,
-        20: 0.50, 21: 0.50, 22: 0.50, 23: 0.50, 24: 0.50,
-        25: 0.50, 26: 0.50,
-    }
+    # aligned to published FINDRISC bands (Lindström & Tuomilehto,
+    # Diabetes Care 2003;26:725-731) instead of ad-hoc per-score interpolation
     score = min(score, 26)
-    return score_to_prob.get(score, 0.50)
+    if   score < 7:    return 0.01
+    elif score <= 11:  return 0.04
+    elif score <= 14:  return 0.17
+    elif score <= 20:  return 0.33
+    else:              return 0.50
 
 
 # ══════════════════════════════════════════════════════════════════════════
@@ -420,12 +441,13 @@ def charlson_index(p: Patient) -> int:
     """
     score = 0
 
-    # Age contribution
+    # Age contribution — added age ≥80 tier per published Charlson
     age = float(p.get("age", 40))
     if   age < 50:  score += 0
     elif age < 60:  score += 1
     elif age < 70:  score += 2
-    else:           score += 3
+    elif age < 80:  score += 3
+    else:           score += 4
 
     # 1-point conditions
     one_pt = [

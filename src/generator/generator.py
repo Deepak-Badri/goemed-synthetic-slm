@@ -481,7 +481,11 @@ def assign_labels(
     if age < 35:                  p_depression += 0.03
     labels["depression"] = bool(rng.random() < p_depression)
 
-    # Metabolic syndrome — ATP III: 3 of 5 criteria
+    # This is NOT published ATP III criteria. It is a proxy composite:
+    #   - Waist thresholds: 98/84 cm (ATP III specifies 102/88 cm)
+    #   - Substitutes total_cholesterol >= 220 for triglycerides >= 150
+    #     (triglycerides not currently in feature schema)
+    # See docs/METABOLIC_SYNDROME_DECISION.md for rationale and v2 plan.
     criteria = 0
     waist = patient.get("waist_cm", 85)
     sex   = patient.get("sex", "M")
@@ -639,7 +643,7 @@ def print_prevalence_report(df: pd.DataFrame):
         ("osa",               df["osa"].mean(),                0.26, "NHANES"),
         ("depression",        df["depression"].mean(),         0.08, "NIMH"),
         ("copd",              df["copd"].mean(),               0.06, "ALA"),
-        ("metabolic_syndrome",df["metabolic_syndrome"].mean(), 0.33, "ATP III"),
+        ("metabolic_syndrome",df["metabolic_syndrome"].mean(), 0.33, "proxy composite (see docs)"),
         ("hypothyroidism",    df["hypothyroidism"].mean(),     0.05, "NHANES"),
         ("prediabetes", df["prediabetes"].mean(), 0.38, "CDC 2023"),
         ("colorectal_cancer",
