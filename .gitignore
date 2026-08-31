@@ -32,3 +32,4 @@ wandb/
 
 # macOS
 .DS_Store
+outputs_pre_fix/
