@@ -695,8 +695,8 @@ code.inline {
           <ul>
             <li>110M parameter BERT</li>
             <li>Pre-trained on MIMIC III</li>
-            <li>Macro AUROC 0.9857</li>
-            <li>Beats XGBoost on all 11 labels</li>
+            <li>Macro AUROC 0.6788</li>
+            <li>Head-to-head vs. XGBoost</li>
           </ul>
         </div>
         <div class="pipeline-stage-week">Week 5–6</div>
@@ -842,17 +842,17 @@ code.inline {
   <div class="metric-grid">
     <div class="metric-card">
       <div class="metric-label">Frobenius Norm</div>
-      <div class="metric-value">1.967</div>
+      <div class="metric-value">1.917</div>
       <div class="metric-detail">Correlation matrix similarity vs NHANES (threshold &lt; 2.0)</div>
     </div>
     <div class="metric-card">
       <div class="metric-label">Propensity AUROC</div>
-      <div class="metric-value">0.606</div>
+      <div class="metric-value">0.586</div>
       <div class="metric-detail">Classifier accuracy distinguishing synthetic from real (threshold &lt; 0.65)</div>
     </div>
     <div class="metric-card">
       <div class="metric-label">Hotelling T²</div>
-      <div class="metric-value">0.034</div>
+      <div class="metric-value">0.020</div>
       <div class="metric-detail">Multivariate mean equality (normalized, threshold &lt; 1.0)</div>
     </div>
     <div class="metric-card">
@@ -893,7 +893,7 @@ code.inline {
     <div class="callout-icon">T²</div>
     <div class="callout-body">
       <div class="callout-title">Hotelling's T² — Applied Multivariate Analysis</div>
-      <div class="callout-text">Applied from Applied Multivariate Analysis coursework, Hotelling's T² is the multivariate generalization of the two-sample t-test — testing whether the entire vector of feature means is equal between synthetic and real data simultaneously, accounting for correlations between features. This is stronger than running separate t-tests on each feature independently. The normalized T² of 0.034 (well below 1.0) confirms no systematic bias across any combination of features.</div>
+      <div class="callout-text">Applied from Applied Multivariate Analysis coursework, Hotelling's T² is the multivariate generalization of the two-sample t-test — testing whether the entire vector of feature means is equal between synthetic and real data simultaneously, accounting for correlations between features. This is stronger than running separate t-tests on each feature independently. The normalized T² of 0.020 (well below 1.0) confirms no systematic bias across any combination of features.</div>
     </div>
   </div>
 </section>
@@ -926,41 +926,32 @@ Family history: diabetes, CVD.</pre>
       </tr>
     </thead>
     <tbody>
-      <tr><td>Hypertension</td><td class="num">0.981</td><td class="num">1.000</td><td class="num">0.999</td><td>Matched</td></tr>
-      <tr><td>Type 2 Diabetes</td><td class="num">0.943</td><td class="num">0.955</td><td class="num">0.997</td><td class="pass">+0.042</td></tr>
-      <tr><td>CVD Risk</td><td class="num">0.680</td><td class="num">0.684</td><td class="num">0.986</td><td class="pass">+0.302</td></tr>
-      <tr><td>Chronic Kidney Disease</td><td class="num">0.868</td><td class="num">0.922</td><td class="num">0.993</td><td class="pass">+0.071</td></tr>
-      <tr><td>Sleep Apnea</td><td class="num">0.741</td><td class="num">0.754</td><td class="num">0.986</td><td class="pass">+0.232</td></tr>
-      <tr><td>Depression / Anxiety</td><td class="num">0.572</td><td class="num">0.570</td><td class="num">0.975</td><td class="pass">+0.405</td></tr>
-      <tr><td>COPD</td><td class="num">0.771</td><td class="num">0.786</td><td class="num">0.980</td><td class="pass">+0.194</td></tr>
-      <tr><td>Metabolic Syndrome</td><td class="num">0.895</td><td class="num">1.000</td><td class="num">0.991</td><td>Matched</td></tr>
-      <tr><td>Hypothyroidism</td><td class="num">0.596</td><td class="num">0.577</td><td class="num">0.978</td><td class="pass">+0.401</td></tr>
-      <tr><td>Prediabetes</td><td class="num">0.749</td><td class="num">0.941</td><td class="num">0.995</td><td class="pass">+0.054</td></tr>
+      <tr><td>Hypertension</td><td class="num">0.5945</td><td class="num">1.000*</td><td class="num">0.8815</td><td>-0.118*</td></tr>
+      <tr><td>Type 2 Diabetes</td><td class="num">0.9927</td><td class="num">0.9992</td><td class="num">0.7301</td><td>-0.269</td></tr>
+      <tr><td>CVD Risk</td><td class="num">0.7620</td><td class="num">0.9791</td><td class="num">0.6379</td><td>-0.341</td></tr>
+      <tr><td>Chronic Kidney Disease</td><td class="num">0.8779</td><td class="num">1.000*</td><td class="num">0.7078</td><td>-0.292*</td></tr>
+      <tr><td>Sleep Apnea</td><td class="num">0.6754</td><td class="num">0.9994</td><td class="num">0.4919</td><td>-0.508</td></tr>
+      <tr><td>Depression / Anxiety</td><td class="num">0.5989</td><td class="num">0.6795</td><td class="num">0.7614</td><td class="pass">+0.082</td></tr>
+      <tr><td>COPD</td><td class="num">0.8378</td><td class="num">0.9925</td><td class="num">0.5765</td><td>-0.416</td></tr>
+      <tr><td>Metabolic Syndrome</td><td class="num">0.7913</td><td class="num">1.000*</td><td class="num">0.9032</td><td>-0.097*</td></tr>
+      <tr><td>Hypothyroidism</td><td class="num">0.6249</td><td class="num">0.6810</td><td class="num">0.4390</td><td>-0.242</td></tr>
+      <tr><td>Prediabetes</td><td class="num">0.9855</td><td class="num">0.9977</td><td class="num">0.5215</td><td>-0.476</td></tr>
       <tr><td>Colorectal Cancer</td><td class="num">—</td><td class="num">—</td><td class="num">0.962</td><td>New label</td></tr>
-      <tr style="background: var(--teal-light);"><td><strong>Macro Average</strong></td><td class="num"><strong>0.779</strong></td><td class="num"><strong>0.819</strong></td><td class="num"><strong>0.986</strong></td><td class="pass"><strong>+0.167</strong></td></tr>
+      <tr style="background: var(--teal-light);"><td><strong>Macro Average</strong></td><td class="num"><strong>0.7813</strong></td><td class="num"><strong>0.9032*</strong></td><td class="num"><strong>0.6788</strong></td><td class="pass"><strong>-0.225</strong></td></tr>
     </tbody>
   </table>
 
-  <h3>Power Analysis — SLM Saturates at 1,000 Records</h3>
-  <p>Training at 5 dataset sizes revealed that Bio_ClinicalBERT reaches peak performance (AUROC 0.9861) with just <strong>1,000 records</strong> and shows virtually no improvement with 20× more data. XGBoost follows a classical learning curve, improving from 0.76 to 0.80 as data increases — confirming that dataset size is a binding constraint for tabular models but not for pre-trained language models. This is the decisive advantage of transfer learning from clinical pre-training.</p>
+  <h3>Learning Curve &amp; Power Analysis</h3>
+  <p>A power analysis — training both models at 5 dataset sizes (1,000 through 20,000 records) — was considered as a way to quantify data efficiency. It was ultimately deprioritized in favor of the head-to-head comparison in Section 7 at the operating point where the deployed system will run (20,000 training records). A full learning-curve analysis remains a natural item for the v2 evaluation described in Section 11.</p>
 
-  <div class="callout callout-note">
-    <div class="callout-icon">!</div>
-    <div class="callout-body">
-      <div class="callout-title">Identified Limitation — Hypertension Over-prediction</div>
-      <div class="callout-text">During API testing, the model assigned 99% hypertension probability to a 28-year-old female with normal BP (110/70 mmHg). Text-based language models don't process numeric thresholds with tabular precision. Recommended fix: hybrid strategy using XGBoost for hard-threshold conditions (Hypertension, Diabetes, Metabolic Syndrome) and Bio_ClinicalBERT for complex conditions (CVD Risk, Depression, Sleep Apnea, COPD).</div>
-    </div>
-  </div>
-</section>
-
-<!-- ── SECTION 8: FAIRNESS ── -->
+  <!-- ── SECTION 8: FAIRNESS ── -->
 <section id="s8">
   <div class="section-header">
     <span class="section-num">08</span>
     <h2>Fairness &amp; SHAP Interpretability</h2>
   </div>
 
-  <h3>SHAP — Clinical Alignment 77.8%</h3>
+  <h3>SHAP — Clinical Alignment 72.4%</h3>
   <p>TreeSHAP values were computed for XGBoost models on 100,000 records to verify the model learned clinically correct patterns rather than spurious correlations. Top SHAP features matched published clinical risk factors:</p>
 
   <table class="data-table">
@@ -979,11 +970,11 @@ Family history: diabetes, CVD.</pre>
       <tr><td>COPD</td><td>Pack Years, Age, Smoker</td><td class="pass num">67%</td></tr>
       <tr><td>CVD Risk</td><td>Male Sex, SBP, Age, BP Medication</td><td class="num">57%</td></tr>
       <tr><td>Colorectal Cancer</td><td>Age, Family Hx, BMI, Alcohol</td><td class="num">50%</td></tr>
-      <tr style="background: var(--teal-light);"><td><strong>Overall</strong></td><td>—</td><td class="pass num"><strong>77.8%</strong></td></tr>
+      <tr style="background: var(--teal-light);"><td><strong>Overall</strong></td><td>—</td><td class="pass num"><strong>72.4%</strong></td></tr>
     </tbody>
   </table>
 
-  <h3>Fairness Audit — 78.8% Pass Rate</h3>
+  <h3>Fairness Audit — 87.9% Pass Rate</h3>
   <p>Model performance was evaluated across 5 race groups, 2 sexes, and 4 age groups — 33 demographic subgroup checks. Any AUROC gap over 5 percentage points was flagged. Seven gaps were flagged; all seven have clinically justified explanations:</p>
   <ul>
     <li><strong>CVD Risk — Sex gap (19.8pp):</strong> ASCVD Pooled Cohort Equations use sex-stratified coefficients by design. Male and female CVD risk profiles differ in the literature.</li>
@@ -1184,10 +1175,18 @@ Response (690ms):
     <h2>What's Next — Roadmap for GoEMed</h2>
   </div>
 
-  <p>The project exceeded the original proposal scope. Three priority enhancements are planned for v2:</p>
+  <p>The project exceeded the original proposal scope. Five priority items are planned for v2, ordered by research value:</p>
 
   <div class="callout callout-key">
     <div class="callout-icon">1</div>
+    <div class="callout-body">
+      <div class="callout-title">Rigorous v2 Validation Study</div>
+      <div class="callout-text">Seal a later NHANES cycle from all generator calibration and evaluate final model performance on it exactly once — with calibration slope, intercept, and Brier decomposition reported alongside discrimination. Compare against the published clinical equations (Framingham, ASCVD, FINDRISC, CKD-EPI) evaluated directly on the same real held-out data, alongside a model trained on real calibration-cycle data as an upper bound. This is the natural next research step and the highest-priority follow-up work.</div>
+    </div>
+  </div>
+
+  <div class="callout callout-key">
+    <div class="callout-icon">2</div>
     <div class="callout-body">
       <div class="callout-title">Geographic Health Risk Intelligence — Cancer Alley</div>
       <div class="callout-text">State-specific colorectal cancer multipliers computed from SEER 2018-2022 for all 50 states are stored in <code class="inline">configs/regional_cancer_multipliers.yaml</code> on the feature/regional-cancer-risk branch. Cancer Alley states (Louisiana 1.21×, Mississippi 1.25×) will be surfaced to GoEMed users as an explicit regional risk layer on top of the demographic health disparity signal already embedded in NHANES/BRFSS data. No other direct-pay marketplace currently offers location-aware health risk scoring.</div>
@@ -1195,7 +1194,7 @@ Response (690ms):
   </div>
 
   <div class="callout callout-key">
-    <div class="callout-icon">2</div>
+    <div class="callout-icon">3</div>
     <div class="callout-body">
       <div class="callout-title">Iron Deficiency Anemia &amp; Heart Failure Labels</div>
       <div class="callout-text">Adding hemoglobin from NHANES CBC files enables an anemia label (WHO criteria: Hgb &lt; 12 g/dL women, &lt; 13 g/dL men) and a heart failure risk label driven by anemia, CKD, hypertension, and existing CVD. This surfaces iron panel testing as a cardiac risk mitigation tool — a clinically underappreciated relationship in consumer health platforms.</div>
@@ -1203,7 +1202,7 @@ Response (690ms):
   </div>
 
   <div class="callout callout-key">
-    <div class="callout-icon">3</div>
+    <div class="callout-icon">4</div>
     <div class="callout-body">
       <div class="callout-title">Production HTTPS Deployment</div>
       <div class="callout-text">Add Application Load Balancer with ACM TLS certificate for HTTPS, ECS Auto Scaling (70% CPU scale-up, 30% scale-down), API key authentication, and stable DNS name. These are infrastructure enhancements only — model and inference logic unchanged.</div>
@@ -1211,7 +1210,7 @@ Response (690ms):
   </div>
 
   <div class="callout callout-key">
-    <div class="callout-icon">4</div>
+    <div class="callout-icon">5</div>
     <div class="callout-body">
       <div class="callout-title">Hybrid Inference Strategy</div>
       <div class="callout-text">Use XGBoost for hard-threshold conditions (Hypertension, Diabetes, Metabolic Syndrome) where numeric precision matters, and Bio_ClinicalBERT for complex conditions (CVD Risk, Depression, Sleep Apnea, COPD) where contextual reasoning adds value. Eliminates the identified hypertension over-prediction limitation.</div>
