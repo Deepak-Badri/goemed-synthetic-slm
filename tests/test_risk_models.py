@@ -356,6 +356,49 @@ def test_charlson_metastatic_cancer():
 # RUN ALL
 # ══════════════════════════════════════════════════════════════════════════
 
+# ══════════════════════════════════════════════════════════════════════════
+# LABEL LEAKAGE REGRESSION TEST
+# Ensures serialized prompts do not contain condition label names
+# ══════════════════════════════════════════════════════════════════════════
+
+def test_no_label_leakage_in_prompts():
+    """
+    No condition label name may appear in any serialized prompt text.
+    This is the regression guard against the leak found in the initial
+    template design.
+    """
+    from src.models.serialize_prompts import (
+        template_1, template_2, template_3, template_4, template_5,
+        LABEL_NAMES, LABEL_COLS,
+    )
+    import pandas as pd
+
+    # A patient with ALL conditions positive — worst case for leakage
+    row = pd.Series({
+        "age": 65, "sex": "M", "race": "nh_black",
+        "bmi": 32, "sbp": 145, "dbp": 92,
+        "total_cholesterol": 220, "hdl_cholesterol": 38,
+        "hba1c": 7.5, "fasting_glucose": 140,
+        "creatinine": 1.4,
+        "smoking_status": "current", "pack_years": 20,
+        "physical_activity_low": True,
+        "family_history_dm": True, "family_history_cvd": True,
+        "bp_treated": True,
+        # All labels positive to maximize chance of leakage
+        **{col: True for col in LABEL_COLS},
+    })
+
+    forbidden = list(LABEL_NAMES.values())
+
+    for i, template in enumerate([template_1, template_2, template_3,
+                                   template_4, template_5], start=1):
+        prompt = template(row)
+        for label_name in forbidden:
+            assert label_name not in prompt, (
+                f"Label leak in template_{i}: '{label_name}' found in prompt"
+            )
+
+
 if __name__ == "__main__":
     import sys
     import traceback

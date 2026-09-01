@@ -145,14 +145,12 @@ def template_1(row: pd.Series) -> str:
         f"Family history — diabetes: {'yes' if row.get('family_history_dm') else 'no'}, "
         f"CVD: {'yes' if row.get('family_history_cvd') else 'no'}. "
         f"BP treatment: {'yes' if row.get('bp_treated') else 'no'}. "
-        f"Creatinine: {row.get('creatinine', 0.9):.2f} mg/dL. "
-        f"Predicted conditions: [{fmt_labels(row)}]"
+        f"Creatinine: {row.get('creatinine', 0.9):.2f} mg/dL."
     )
 
 
 def template_2(row: pd.Series) -> str:
     """Structured list style."""
-    labels = fmt_labels(row)
     return (
         f"Demographics: {fmt_age(row['age'])} {fmt_sex(row['sex'])}, "
         f"{fmt_race(row['race'])} ethnicity. "
@@ -166,15 +164,13 @@ def template_2(row: pd.Series) -> str:
         f"Lifestyle: {fmt_smoke(row.get('smoking_status','never'), row.get('pack_years',0))}, "
         f"{fmt_activity(row.get('physical_activity_low', False))}. "
         f"Family history: DM={'yes' if row.get('family_history_dm') else 'no'}, "
-        f"CVD={'yes' if row.get('family_history_cvd') else 'no'}. "
-        f"Conditions: [{labels}]"
+        f"CVD={'yes' if row.get('family_history_cvd') else 'no'}."
     )
 
 
 def template_3(row: pd.Series) -> str:
     """Narrative paragraph style."""
     sex_pronoun = "He" if row["sex"] == "M" else "She"
-    labels = fmt_labels(row)
     bp_status = ("elevated blood pressure" if row["sbp"] >= 130
                  else "normal blood pressure")
     glucose_status = ("diabetic-range glucose" if row["fasting_glucose"] >= 126
@@ -193,14 +189,12 @@ def template_3(row: pd.Series) -> str:
         f"and is {fmt_activity(row.get('physical_activity_low', False))}. "
         f"Family history is notable for "
         f"{'diabetes and ' if row.get('family_history_dm') else ''}"
-        f"{'cardiovascular disease' if row.get('family_history_cvd') else 'no significant conditions'}. "
-        f"Health risk assessment: [{labels}]"
+        f"{'cardiovascular disease' if row.get('family_history_cvd') else 'no significant conditions'}."
     )
 
 
 def template_4(row: pd.Series) -> str:
     """Abbreviated EHR style."""
-    labels = fmt_labels(row)
     return (
         f"Pt: {fmt_age(row['age'])} {fmt_sex(row['sex'])}, "
         f"{fmt_race(row['race'])}. "
@@ -213,14 +207,12 @@ def template_4(row: pd.Series) -> str:
         f"Smk: {row.get('smoking_status','never')}. "
         f"FHx DM: {'Y' if row.get('family_history_dm') else 'N'}, "
         f"CVD: {'Y' if row.get('family_history_cvd') else 'N'}. "
-        f"Meds: {'antihypertensive' if row.get('bp_treated') else 'none noted'}. "
-        f"Dx: [{labels}]"
+        f"Meds: {'antihypertensive' if row.get('bp_treated') else 'none noted'}."
     )
 
 
 def template_5(row: pd.Series) -> str:
     """Risk-focused style."""
-    labels = fmt_labels(row)
     risk_factors = []
     if row["bmi"] >= 30:
         risk_factors.append(f"obesity (BMI {row['bmi']:.1f})")
@@ -246,8 +238,7 @@ def template_5(row: pd.Series) -> str:
         f"Key risk factors: {rf_str}. "
         f"Cholesterol: total {row['total_cholesterol']:.0f} mg/dL, "
         f"HDL {row['hdl_cholesterol']:.0f} mg/dL. "
-        f"Renal function: creatinine {row.get('creatinine', 0.9):.2f} mg/dL. "
-        f"Predicted health conditions: [{labels}]"
+        f"Renal function: creatinine {row.get('creatinine', 0.9):.2f} mg/dL."
     )
 
 
