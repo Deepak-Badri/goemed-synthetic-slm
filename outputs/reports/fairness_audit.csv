@@ -1,122 +1,122 @@
 group_col,group,label,auroc,n,n_positive
-race,Hispanic,hypertension,1.0,3672,1542
-race,Hispanic,diabetes,0.9552,3672,761
-race,Hispanic,cvd_risk,0.6773,3672,479
-race,Hispanic,ckd,0.9065,3672,486
-race,Hispanic,osa,0.7392,3672,887
-race,Hispanic,depression,0.5679,3672,390
-race,Hispanic,copd,0.7726,3672,288
-race,Hispanic,metabolic_syndrome,1.0,3672,1422
-race,Hispanic,hypothyroidism,0.5801,3672,267
-race,Hispanic,prediabetes,0.9349,3672,1151
-race,Hispanic,colorectal_cancer,0.6864,3672,88
-race,NH Asian,hypertension,1.0,1234,581
-race,NH Asian,diabetes,0.9554,1234,154
-race,NH Asian,cvd_risk,0.6741,1234,194
-race,NH Asian,ckd,0.9201,1234,170
-race,NH Asian,osa,0.7444,1234,221
-race,NH Asian,depression,0.5252,1234,137
-race,NH Asian,copd,0.7727,1234,98
-race,NH Asian,metabolic_syndrome,0.9999,1234,341
-race,NH Asian,hypothyroidism,0.5528,1234,86
-race,NH Asian,prediabetes,0.9401,1234,458
-race,NH Asian,colorectal_cancer,0.7093,1234,42
-race,NH Black,hypertension,1.0,2478,1446
-race,NH Black,diabetes,0.9566,2478,500
-race,NH Black,cvd_risk,0.6803,2478,372
-race,NH Black,ckd,0.9115,2478,354
-race,NH Black,osa,0.7413,2478,647
-race,NH Black,depression,0.5538,2478,270
-race,NH Black,copd,0.7859,2478,216
-race,NH Black,metabolic_syndrome,1.0,2478,934
-race,NH Black,hypothyroidism,0.5809,2478,193
-race,NH Black,prediabetes,0.9298,2478,843
-race,NH Black,colorectal_cancer,0.7334,2478,82
-race,NH White,hypertension,1.0,11817,5619
-race,NH White,diabetes,0.9517,11817,1349
-race,NH White,cvd_risk,0.704,11817,1716
-race,NH White,ckd,0.9294,11817,1450
-race,NH White,osa,0.7594,11817,2726
-race,NH White,depression,0.555,11817,1227
-race,NH White,copd,0.7643,11817,935
-race,NH White,metabolic_syndrome,0.9999,11817,4131
-race,NH White,hypothyroidism,0.5973,11817,809
-race,NH White,prediabetes,0.9398,11817,3975
-race,NH White,colorectal_cancer,0.7113,11817,453
-race,Other/Multi,hypertension,1.0,799,376
-race,Other/Multi,diabetes,0.9523,799,123
-race,Other/Multi,cvd_risk,0.6714,799,127
-race,Other/Multi,ckd,0.9088,799,87
-race,Other/Multi,osa,0.7493,799,172
-race,Other/Multi,depression,0.5343,799,92
-race,Other/Multi,copd,0.8328,799,65
-race,Other/Multi,metabolic_syndrome,1.0,799,282
-race,Other/Multi,hypothyroidism,0.5955,799,65
-race,Other/Multi,prediabetes,0.941,799,249
-race,Other/Multi,colorectal_cancer,0.6057,799,36
-sex,Female,hypertension,1.0,10247,4580
-sex,Female,diabetes,0.9497,10247,1118
-sex,Female,cvd_risk,0.5706,10247,2117
-sex,Female,ckd,0.936,10247,1295
-sex,Female,osa,0.7557,10247,1505
-sex,Female,depression,0.521,10247,1275
-sex,Female,copd,0.7731,10247,819
-sex,Female,metabolic_syndrome,1.0,10247,3848
-sex,Female,hypothyroidism,0.5187,10247,945
-sex,Female,prediabetes,0.9421,10247,3376
-sex,Female,colorectal_cancer,0.7193,10247,386
-sex,Male,hypertension,1.0,9753,4984
-sex,Male,diabetes,0.9562,9753,1769
-sex,Male,cvd_risk,0.7684,9753,771
-sex,Male,ckd,0.9055,9753,1252
-sex,Male,osa,0.6904,9753,3148
-sex,Male,depression,0.5238,9753,841
-sex,Male,copd,0.7702,9753,783
-sex,Male,metabolic_syndrome,1.0,9753,3262
-sex,Male,hypothyroidism,0.533,9753,475
-sex,Male,prediabetes,0.9331,9753,3300
-sex,Male,colorectal_cancer,0.6794,9753,315
-age_group,18-34,hypertension,1.0,5552,1786
-age_group,18-34,diabetes,0.958,5552,848
-age_group,18-34,cvd_risk,0.7452,5552,653
-age_group,18-34,ckd,0.911,5552,226
-age_group,18-34,osa,0.7461,5552,981
-age_group,18-34,depression,0.5369,5552,692
-age_group,18-34,copd,0.7793,5552,315
-age_group,18-34,metabolic_syndrome,1.0,5552,1557
-age_group,18-34,hypothyroidism,0.5674,5552,394
-age_group,18-34,prediabetes,0.9403,5552,1846
-age_group,18-34,colorectal_cancer,0.5158,5552,65
-age_group,35-49,hypertension,1.0,4506,1880
-age_group,35-49,diabetes,0.962,4506,624
-age_group,35-49,cvd_risk,0.7183,4506,550
-age_group,35-49,ckd,0.902,4506,164
-age_group,35-49,osa,0.7578,4506,819
-age_group,35-49,depression,0.5392,4506,443
-age_group,35-49,copd,0.7723,4506,303
-age_group,35-49,metabolic_syndrome,1.0,4506,1404
-age_group,35-49,hypothyroidism,0.5818,4506,259
-age_group,35-49,prediabetes,0.9361,4506,1485
-age_group,35-49,colorectal_cancer,0.5144,4506,49
-age_group,50-64,hypertension,1.0,4629,2444
-age_group,50-64,diabetes,0.9553,4629,643
-age_group,50-64,cvd_risk,0.6735,4629,669
-age_group,50-64,ckd,0.8963,4629,394
-age_group,50-64,osa,0.73,4629,1256
-age_group,50-64,depression,0.5494,4629,456
-age_group,50-64,copd,0.7738,4629,369
-age_group,50-64,metabolic_syndrome,0.9999,4629,1776
-age_group,50-64,hypothyroidism,0.608,4629,299
-age_group,50-64,prediabetes,0.938,4629,1593
-age_group,50-64,colorectal_cancer,0.5309,4629,183
-age_group,65-80,hypertension,1.0,5313,3454
-age_group,65-80,diabetes,0.9411,5313,772
-age_group,65-80,cvd_risk,0.6139,5313,1016
-age_group,65-80,ckd,0.8434,5313,1763
-age_group,65-80,osa,0.7367,5313,1597
-age_group,65-80,depression,0.5517,5313,525
-age_group,65-80,copd,0.6819,5313,615
-age_group,65-80,metabolic_syndrome,1.0,5313,2373
-age_group,65-80,hypothyroidism,0.5721,5313,468
-age_group,65-80,prediabetes,0.937,5313,1752
-age_group,65-80,colorectal_cancer,0.5129,5313,404
+race,Hispanic,hypertension,1.0,3745,1544
+race,Hispanic,diabetes,0.9596,3745,794
+race,Hispanic,cvd_risk,0.813,3745,242
+race,Hispanic,ckd,0.9066,3745,489
+race,Hispanic,osa,0.7496,3745,859
+race,Hispanic,depression,0.5492,3745,417
+race,Hispanic,copd,0.7982,3745,307
+race,Hispanic,metabolic_syndrome,1.0,3745,1484
+race,Hispanic,hypothyroidism,0.5735,3745,254
+race,Hispanic,prediabetes,0.9345,3745,1224
+race,Hispanic,colorectal_cancer,0.7005,3745,97
+race,NH Asian,hypertension,1.0,1169,552
+race,NH Asian,diabetes,0.958,1169,147
+race,NH Asian,cvd_risk,0.7587,1169,76
+race,NH Asian,ckd,0.937,1169,165
+race,NH Asian,osa,0.7043,1169,216
+race,NH Asian,depression,0.5302,1169,131
+race,NH Asian,copd,0.7474,1169,79
+race,NH Asian,metabolic_syndrome,0.9997,1169,350
+race,NH Asian,hypothyroidism,0.5551,1169,92
+race,NH Asian,prediabetes,0.9303,1169,443
+race,NH Asian,colorectal_cancer,0.7286,1169,46
+race,NH Black,hypertension,1.0,2439,1450
+race,NH Black,diabetes,0.9576,2439,474
+race,NH Black,cvd_risk,0.7575,2439,204
+race,NH Black,ckd,0.9085,2439,344
+race,NH Black,osa,0.7272,2439,642
+race,NH Black,depression,0.5542,2439,241
+race,NH Black,copd,0.7519,2439,196
+race,NH Black,metabolic_syndrome,1.0,2439,921
+race,NH Black,hypothyroidism,0.5693,2439,176
+race,NH Black,prediabetes,0.9184,2439,866
+race,NH Black,colorectal_cancer,0.6644,2439,91
+race,NH White,hypertension,1.0,11895,5641
+race,NH White,diabetes,0.9522,11895,1329
+race,NH White,cvd_risk,0.7775,11895,796
+race,NH White,ckd,0.9286,11895,1356
+race,NH White,osa,0.752,11895,2746
+race,NH White,depression,0.5722,11895,1257
+race,NH White,copd,0.767,11895,914
+race,NH White,metabolic_syndrome,1.0,11895,4235
+race,NH White,hypothyroidism,0.582,11895,852
+race,NH White,prediabetes,0.9383,11895,4129
+race,NH White,colorectal_cancer,0.7187,11895,432
+race,Other/Multi,hypertension,1.0,752,369
+race,Other/Multi,diabetes,0.9539,752,90
+race,Other/Multi,cvd_risk,0.7161,752,56
+race,Other/Multi,ckd,0.9453,752,103
+race,Other/Multi,osa,0.7444,752,186
+race,Other/Multi,depression,0.6089,752,82
+race,Other/Multi,copd,0.8111,752,58
+race,Other/Multi,metabolic_syndrome,0.9985,752,263
+race,Other/Multi,hypothyroidism,0.6015,752,53
+race,Other/Multi,prediabetes,0.938,752,265
+race,Other/Multi,colorectal_cancer,0.6246,752,23
+sex,Female,hypertension,1.0,10161,4533
+sex,Female,diabetes,0.9527,10161,1114
+sex,Female,cvd_risk,0.7948,10161,603
+sex,Female,ckd,0.9362,10161,1239
+sex,Female,osa,0.7465,10161,1508
+sex,Female,depression,0.5269,10161,1299
+sex,Female,copd,0.7769,10161,789
+sex,Female,metabolic_syndrome,0.9999,10161,3969
+sex,Female,hypothyroidism,0.5172,10161,941
+sex,Female,prediabetes,0.9398,10161,3414
+sex,Female,colorectal_cancer,0.7164,10161,396
+sex,Male,hypertension,1.0,9839,5023
+sex,Male,diabetes,0.9579,9839,1720
+sex,Male,cvd_risk,0.7603,9839,771
+sex,Male,ckd,0.9089,9839,1218
+sex,Male,osa,0.6873,9839,3141
+sex,Male,depression,0.5366,9839,829
+sex,Male,copd,0.7663,9839,765
+sex,Male,metabolic_syndrome,1.0,9839,3284
+sex,Male,hypothyroidism,0.5133,9839,486
+sex,Male,prediabetes,0.9295,9839,3513
+sex,Male,colorectal_cancer,0.688,9839,293
+age_group,18-34,hypertension,1.0,5467,1730
+age_group,18-34,diabetes,0.9596,5467,804
+age_group,18-34,cvd_risk,0.8327,5467,188
+age_group,18-34,ckd,0.9082,5467,205
+age_group,18-34,osa,0.7363,5467,963
+age_group,18-34,depression,0.5337,5467,723
+age_group,18-34,copd,0.7903,5467,323
+age_group,18-34,metabolic_syndrome,0.9999,5467,1492
+age_group,18-34,hypothyroidism,0.5692,5467,350
+age_group,18-34,prediabetes,0.9363,5467,1899
+age_group,18-34,colorectal_cancer,0.4444,5467,58
+age_group,35-49,hypertension,1.0,4684,1944
+age_group,35-49,diabetes,0.962,4684,643
+age_group,35-49,cvd_risk,0.8065,4684,215
+age_group,35-49,ckd,0.8857,4684,166
+age_group,35-49,osa,0.7603,4684,866
+age_group,35-49,depression,0.5589,4684,476
+age_group,35-49,copd,0.791,4684,259
+age_group,35-49,metabolic_syndrome,1.0,4684,1524
+age_group,35-49,hypothyroidism,0.5623,4684,329
+age_group,35-49,prediabetes,0.936,4684,1594
+age_group,35-49,colorectal_cancer,0.5599,4684,42
+age_group,50-64,hypertension,1.0,4609,2462
+age_group,50-64,diabetes,0.9529,4609,672
+age_group,50-64,cvd_risk,0.7321,4609,352
+age_group,50-64,ckd,0.8921,4609,394
+age_group,50-64,osa,0.7254,4609,1260
+age_group,50-64,depression,0.5487,4609,447
+age_group,50-64,copd,0.7741,4609,352
+age_group,50-64,metabolic_syndrome,0.9997,4609,1850
+age_group,50-64,hypothyroidism,0.5863,4609,304
+age_group,50-64,prediabetes,0.9323,4609,1605
+age_group,50-64,colorectal_cancer,0.4788,4609,192
+age_group,65-80,hypertension,1.0,5240,3420
+age_group,65-80,diabetes,0.9491,5240,715
+age_group,65-80,cvd_risk,0.6797,5240,619
+age_group,65-80,ckd,0.8527,5240,1692
+age_group,65-80,osa,0.7211,5240,1560
+age_group,65-80,depression,0.5625,5240,482
+age_group,65-80,copd,0.6547,5240,620
+age_group,65-80,metabolic_syndrome,1.0,5240,2387
+age_group,65-80,hypothyroidism,0.5701,5240,444
+age_group,65-80,prediabetes,0.9353,5240,1829
+age_group,65-80,colorectal_cancer,0.5276,5240,397

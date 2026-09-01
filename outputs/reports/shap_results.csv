@@ -1,12 +1,12 @@
 label,match_rate,n_matches,n_expected,matched_terms,top_8_features,status
-hypertension,0.8,4,5,sbp; dbp; age; bp_treated,sbp; dbp; bp_treated; age; weight_kg; hba1c; creatinine; total_cholesterol,✅ ALIGNED
-diabetes,1.0,5,5,hba1c; fasting_glucose; bmi; family_history_dm; age,fasting_glucose; hba1c; family_history_dm; age; bmi; waist_cm; physical_activity_low; total_cholesterol,✅ ALIGNED
-cvd_risk,0.571,4,7,sbp; age; sex_male; bp_treated,sex_male; sbp; dbp; age; bp_treated; creatinine; weight_kg; hba1c,✅ ALIGNED
-ckd,1.0,4,4,creatinine; age; sbp; hba1c,creatinine; age; fasting_glucose; sex_male; hba1c; waist_cm; bmi; sbp,✅ ALIGNED
-osa,0.8,4,5,bmi; snoring; sex_male; age,sex_male; bmi; age; snoring; tired; sbp; weight_kg; hdl_cholesterol,✅ ALIGNED
-depression,0.667,2,3,sex_male; age,sex_male; age; weight_kg; hba1c; creatinine; dbp; sbp; bmi,✅ ALIGNED
-copd,0.667,2,3,pack_years; age,pack_years; age; waist_cm; total_cholesterol; hba1c; sbp; weight_kg; hdl_cholesterol,✅ ALIGNED
+hypertension,1.0,5,5,sbp; dbp; age; bmi; bp_treated,sbp; dbp; bp_treated; age; bmi; weight_kg; hba1c; total_cholesterol,✅ ALIGNED
+diabetes,1.0,5,5,hba1c; fasting_glucose; bmi; family_history_dm; age,fasting_glucose; hba1c; family_history_dm; age; bmi; waist_cm; physical_activity_low; dbp,✅ ALIGNED
+cvd_risk,0.714,5,7,sbp; total_cholesterol; hdl_cholesterol; age; bp_treated,sbp; dbp; age; bp_treated; creatinine; total_cholesterol; weight_kg; hdl_cholesterol,✅ ALIGNED
+ckd,1.0,4,4,creatinine; age; sbp; hba1c,creatinine; age; fasting_glucose; sex_male; hba1c; total_cholesterol; waist_cm; sbp,✅ ALIGNED
+osa,0.8,4,5,bmi; snoring; sex_male; age,sex_male; bmi; age; snoring; tired; sbp; weight_kg; creatinine,✅ ALIGNED
+depression,0.667,2,3,sex_male; age,sex_male; age; hba1c; creatinine; dbp; fasting_glucose; bmi; weight_kg,✅ ALIGNED
+copd,0.667,2,3,pack_years; age,pack_years; age; sbp; bmi; dbp; hba1c; total_cholesterol; fasting_glucose,✅ ALIGNED
 metabolic_syndrome,0.8,4,5,waist_cm; fasting_glucose; hdl_cholesterol; sbp,fasting_glucose; hdl_cholesterol; sbp; total_cholesterol; waist_cm; sex_male; dbp; hba1c,✅ ALIGNED
-hypothyroidism,1.0,2,2,sex_male; age,sex_male; age; waist_cm; bmi; creatinine; sbp; hba1c; hdl_cholesterol,✅ ALIGNED
-prediabetes,0.75,3,4,hba1c; fasting_glucose; bmi,fasting_glucose; hba1c; sex_male; hdl_cholesterol; dbp; total_cholesterol; waist_cm; bmi,✅ ALIGNED
-colorectal_cancer,0.5,2,4,age; bmi,age; total_cholesterol; dbp; creatinine; bmi; hba1c; hdl_cholesterol; weight_kg,✅ ALIGNED
+hypothyroidism,1.0,2,2,sex_male; age,sex_male; age; creatinine; hba1c; dbp; total_cholesterol; weight_kg; hdl_cholesterol,✅ ALIGNED
+prediabetes,1.0,4,4,hba1c; fasting_glucose; bmi; age,fasting_glucose; hba1c; sex_male; total_cholesterol; age; sbp; dbp; bmi,✅ ALIGNED
+colorectal_cancer,0.5,2,4,age; bmi,age; bmi; hba1c; creatinine; hdl_cholesterol; weight_kg; sbp; total_cholesterol,✅ ALIGNED
