@@ -61,8 +61,13 @@ FEATURE_COLS = [
 LABEL_COLS = [
     "hypertension", "diabetes", "cvd_risk", "ckd",
     "osa", "depression", "copd", "metabolic_syndrome",
-    "hypothyroidism", "prediabetes",
+    "hypothyroidism", "prediabetes", "colorectal_cancer",
 ]
+
+# Labels whose definition is a deterministic function of the input features.
+# These are excluded from headline macro averages because a model that
+# reconstructs the definition will trivially score AUROC ~= 1.0.
+DETERMINISTIC_LABELS = {"hypertension", "metabolic_syndrome", "ckd"}
 
 LABEL_DISPLAY = {
     "hypertension":       "Hypertension",
@@ -75,6 +80,7 @@ LABEL_DISPLAY = {
     "metabolic_syndrome": "Metabolic Syndrome",
     "hypothyroidism":     "Hypothyroidism",
     "prediabetes":        "Prediabetes",
+    "colorectal_cancer":  "Colorectal Cancer",
 }
 
 
@@ -114,9 +120,11 @@ def load_data():
     val_df   = df.iloc[n_train:n_train + n_val]
     test_df  = df.iloc[n_train + n_val:]
 
-    X_train = train_df[feat_cols].fillna(train_df[feat_cols].median())
-    X_val   = val_df[feat_cols].fillna(train_df[feat_cols].median())
-    X_test  = test_df[feat_cols].fillna(train_df[feat_cols].median())
+    # Preserve NaN so XGBoost can use its native sparsity-aware splits.
+    # LogisticRegression handles missingness separately in its own pipeline.
+    X_train = train_df[feat_cols]
+    X_val   = val_df[feat_cols]
+    X_test  = test_df[feat_cols]
 
     Y_train = train_df[LABEL_COLS].astype(int)
     Y_val   = val_df[LABEL_COLS].astype(int)
@@ -169,18 +177,30 @@ def evaluate_model(
         })
 
     df = pd.DataFrame(rows)
-    macro_auroc = df["auroc"].mean()
-    macro_f1    = df["f1"].mean()
+    df["deterministic"] = df["label"].isin(DETERMINISTIC_LABELS)
+
+    # Headline macro average excludes deterministic labels
+    learned = df[~df["deterministic"]]
+    deterministic = df[df["deterministic"]]
+    macro_auroc = learned["auroc"].mean()
+    macro_f1    = learned["f1"].mean()
+
     log.info(f"\n  {model_name} — Test Set Performance:")
     log.info(f"  {'Label':<22} {'AUROC':>7} {'F1':>7} "
              f"{'AvgPrec':>8} {'Brier':>7}")
     log.info("  " + "-" * 55)
     for _, row in df.iterrows():
-        log.info(f"  {row['label']:<22} {row['auroc']:>7.4f} "
+        det_marker = " *" if row["deterministic"] else ""
+        log.info(f"  {row['label']+det_marker:<22} {row['auroc']:>7.4f} "
                  f"{row['f1']:>7.4f} {row['avg_prec']:>8.4f} "
                  f"{row['brier']:>7.4f}")
-    log.info(f"  {'MACRO AVERAGE':<22} {macro_auroc:>7.4f} "
+    log.info("  " + "-" * 55)
+    log.info(f"  {'MACRO (learned only)':<22} {macro_auroc:>7.4f} "
              f"{macro_f1:>7.4f}")
+    if len(deterministic) > 0:
+        det_auroc = deterministic["auroc"].mean()
+        log.info(f"  {'MACRO (deterministic *)':<22} {det_auroc:>7.4f}")
+        log.info("  * = label is a deterministic function of features")
     return df
 
 
@@ -194,9 +214,14 @@ def train_logistic_regression(
     """One-vs-rest Logistic Regression per label."""
     log.info("\n── Training Logistic Regression (OvR) ──")
 
+    # LR requires imputation — use train medians only
+    train_medians = X_train.median()
+    X_train_imp = X_train.fillna(train_medians)
+    X_test_imp  = X_test.fillna(train_medians)
+
     scaler = StandardScaler()
-    X_tr   = scaler.fit_transform(X_train)
-    X_te   = scaler.transform(X_test)
+    X_tr   = scaler.fit_transform(X_train_imp)
+    X_te   = scaler.transform(X_test_imp)
 
     Y_pred_proba = np.zeros((len(X_test), len(LABEL_COLS)))
 
