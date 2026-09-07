@@ -109,6 +109,20 @@ goemed-synthetic-slm/
 └── requirements-api.txt # Inference container dependencies
 ```
 
+## Companion Web App
+
+A React demo interface for the API is included in `web-app/` — a clean UI showing the prediction workflow with example patient presets, color-coded risk bars sorted by severity, and clinical reasoning callouts for each condition.
+
+To run it locally:
+
+```bash
+cd web-app
+npm install
+npm start
+```
+
+Opens at `http://localhost:3000`. The `API_URL` constant in `src/App.js` points at the deployed AWS endpoint (or a local instance if you're running the FastAPI server on your machine). Includes a "Mock" mode toggle so the UI can be demoed without a live API.
+
 ## Reports
 
 Three complementary deliverables in `outputs/reports/`:
